@@ -10,7 +10,8 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "jsx-runtime"
+    "jsx-runtime",
+    "src"
   ],
   "scripts": {
     "build": "tsc",
