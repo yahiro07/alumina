@@ -1,6 +1,10 @@
 {
   "name": "alumina",
   "version": "0.0.1",
+  "description": "vdom framework",
+  "repository": "https://github.com/yahiro07/alumina.git",
+  "author": "yahiro",
+  "license": "MIT",
   "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
