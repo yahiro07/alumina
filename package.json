@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {}
 }
