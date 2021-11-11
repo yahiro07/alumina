@@ -1,4 +1,4 @@
-export { jsx } from "./jsx-runtime";
+export { jsx } from "./jsx";
 
 export function render(fn: () => any, el: HTMLElement | undefined) {
   if (el) {
