@@ -4,8 +4,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "jsx": "react-jsx",
-    "jsxImportSource": "alumina",
-    "allowJs": true
+    "jsxImportSource": "alumina"
   },
   "include": ["src/**/*"]
 }
