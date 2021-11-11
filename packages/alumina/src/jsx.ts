@@ -10,17 +10,18 @@ function extractPropsChildren(props: any): any {
   }
 }
 
-export function jsx(tagName: string | Function, props: any) {
-  console.log({ tagName, props });
-
-  if (tagName === Fragment) {
-    return props.children;
-  }
-
-  const vtype = typeof tagName === "string" ? tagName : tagName.name;
+export function jsx(vtag: string | Function, props: any): any {
+  console.log({ vtag: (vtag as any).name || vtag, props });
 
   const modProps = extractPropsChildren(props);
-  return { vtype, props: modProps };
+  if (vtag === Fragment) {
+    return { vtype: "vFragment", props: modProps };
+  }
+
+  const vtype = typeof vtag === "function" ? "vComponent" : "vElement";
+  const debugSig = typeof vtag === "function" ? vtag.name : vtag;
+
+  return { vtype, vtag, debugSig, props: modProps };
 }
 
 export const jsxs = jsx;
