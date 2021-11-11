@@ -1,16 +1,26 @@
 import { render } from "alumina";
 
+const TestComponent = () => {
+  return <div>test test</div>;
+};
+
+const TestComponent2 = () => {
+  return (
+    <>
+      <div>foo</div>
+      <div>bar</div>
+    </>
+  );
+};
+
 const AppRoot = () => (
   <div id="foo" class="bar">
     <h1>hello</h1>
-    <p>world</p>
     <>
       <div>hoge</div>
-      <div>piyo</div>
     </>
-    <>
-      <p>poyo</p>
-    </>
+    <TestComponent />
+    <TestComponent2 />
   </div>
 );
 
