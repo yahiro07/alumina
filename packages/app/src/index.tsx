@@ -1,4 +1,8 @@
-import { render } from "alumina";
+import { render, rerender } from "alumina";
+
+const state = {
+  message: "hello",
+};
 
 const TestComponent = () => {
   return <div>test test</div>;
@@ -15,7 +19,7 @@ const TestComponent2 = () => {
 
 const AppRoot = () => (
   <div id="foo" class="bar">
-    <h1>hello</h1>
+    <h1>{state.message}</h1>
     <>
       <div>hoge</div>
     </>
@@ -25,3 +29,8 @@ const AppRoot = () => (
 );
 
 render(AppRoot, document.getElementById("app"));
+
+setTimeout(() => {
+  state.message = "world";
+  rerender();
+}, 1000);
