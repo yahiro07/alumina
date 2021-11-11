@@ -5,14 +5,14 @@ const state = {
 };
 
 const TestComponent = () => {
-  return <div id="tc-1-1">test test</div>;
+  return <div id="tc-1-1">tc11</div>;
 };
 
 const TestComponent2 = () => {
   return (
     <>
-      <div id="tc-2-1">foo</div>
-      <div id="tc-2-2">bar</div>
+      <div id="tc-2-1">tc21</div>
+      <div id="tc-2-2">tc22</div>
     </>
   );
 };
@@ -20,7 +20,7 @@ const TestComponent2 = () => {
 const TestComponent3 = () => {
   return (
     <>
-      <div id="tc-3-1">foo</div>
+      <div id="tc-3-1">tc31</div>
     </>
   );
 };
@@ -37,7 +37,7 @@ const AppRoot = () => (
   <div id="foo" class="bar">
     <h1>{state.message}</h1>
     <>
-      <div id="approot-flagment-1">hoge</div>
+      <div id="approot-fragment-1">approot-fragment-1</div>
     </>
     <TestComponent />
     <TestComponent2 />
