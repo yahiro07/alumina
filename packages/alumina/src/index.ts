@@ -1,10 +1,11 @@
 import { Fragment } from "./jsx";
+import { VNode } from "./types";
 
 export { jsx } from "./jsx";
 
 type IState = {
-  rootElement: any;
-  rootRenderFn: () => any;
+  rootElement: HTMLElement | undefined;
+  rootRenderFn: (() => VNode) | undefined;
 };
 
 const state: IState = {
@@ -12,19 +13,15 @@ const state: IState = {
   rootRenderFn: undefined,
 };
 
-export function rerender() {
-  const { rootElement: el, rootRenderFn } = state;
-  const vdom = rootRenderFn();
-  console.log({ vdom });
-
-  const elementVNodes = vdom.props.children
+function mount(element: Element, vnode: VNode) {
+  const elementVNodes = vnode.children
     .map((vnode) => {
       if (vnode.vtype === "vFragment") {
-        return vnode.props.children;
+        return vnode.children;
       } else if (vnode.vtype === "vComponent") {
         const res = vnode.vtag();
         if (res.vtype === "vFragment") {
-          return res.props.children;
+          return res.children;
         }
         return res;
       }
@@ -32,9 +29,18 @@ export function rerender() {
     })
     .flat();
   console.log({ elementVNodes });
-  el.style.whiteSpace = "pre-wrap";
-  el.style.fontSize = "14px";
-  el.innerHTML = JSON.stringify(vdom, null, "    ");
+}
+
+export function rerender() {
+  const { rootElement, rootRenderFn } = state;
+  if (rootElement && rootRenderFn) {
+    const vnode = rootRenderFn();
+    console.log({ vnode });
+    mount(rootElement, vnode);
+    // el.style.whiteSpace = "pre-wrap";
+    // el.style.fontSize = "14px";
+    // el.innerHTML = JSON.stringify(vdom, null, "    ");
+  }
 }
 
 export function render(fn: () => any, el: HTMLElement | undefined) {
