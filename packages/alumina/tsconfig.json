@@ -1,6 +1,12 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "outDir": "./dist"
   },
