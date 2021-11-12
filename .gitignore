@@ -5,3 +5,5 @@ yarn-error.log
 .node-version
 .parcel-cache/
 .vscode/
+
+packages_dev/
