@@ -161,7 +161,7 @@ export function patch(parentDom: Node, newVNode: IVNode, oldVNode: IVNode) {
     oldVNode.vtype === 'vElement' &&
     newVNode.tagName === oldVNode.tagName
   ) {
-    const dom = oldVNode.dom!;
+    const dom = oldVNode.dom;
     applyDomAttributes(dom, newVNode, oldVNode);
     patchChildren(dom, newVNode.children, oldVNode.children);
 

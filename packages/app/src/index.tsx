@@ -1,7 +1,7 @@
-import { render, rerender } from "alumina";
+import { render } from 'alumina';
 
 const state = {
-  message: "hello",
+  message: 'hello',
 };
 
 const TestComponent = () => {
@@ -45,9 +45,9 @@ const AppRoot = () => (
   </div>
 );
 
-render(AppRoot, document.getElementById("app"));
+render(AppRoot, document.getElementById('app'));
 
 setTimeout(() => {
-  state.message = "world";
+  state.message = 'world';
   // rerender();
 }, 1000);

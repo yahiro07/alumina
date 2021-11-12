@@ -7,7 +7,7 @@ export type JsxProps = {
 export type VProps = {};
 
 export type VElement = {
-  vtype: "vElement";
+  vtype: 'vElement';
   tagName: string;
   props: VProps;
   children: VNode[];
@@ -16,7 +16,7 @@ export type VElement = {
 export type VComponentFn = (props: VProps) => VNode;
 
 export type VComponent = {
-  vtype: "vComponent";
+  vtype: 'vComponent';
   componentFn: VComponentFn;
   props: VProps;
   children: VNode[];
@@ -24,17 +24,17 @@ export type VComponent = {
 };
 
 export type VFragment = {
-  vtype: "vFragment";
+  vtype: 'vFragment';
   children: VNode[];
 };
 
 export type VText = {
-  vtype: "vText";
+  vtype: 'vText';
   text: string;
 };
 
 export type VBlank = {
-  vtype: "vBlank";
+  vtype: 'vBlank';
 };
 
 export type VNode = VElement | VComponent | VFragment | VText | VBlank;

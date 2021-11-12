@@ -1,6 +1,6 @@
-import { VNode } from "./types";
+import { VNode } from './types';
 
-export { jsx } from "./jsx";
+export { jsx } from './jsx';
 
 type IState = {
   rootElement: HTMLElement | undefined;
@@ -28,18 +28,18 @@ function mount(parentDom: Element, vnode: VNode) {
   //   })
   //   .flat();
   // console.log({ elementVNodes });
-  if (vnode.vtype === "vText") {
+  if (vnode.vtype === 'vText') {
     const dom = document.createTextNode(vnode.text);
     parentDom.appendChild(dom);
-  } else if (vnode.vtype === "vElement") {
+  } else if (vnode.vtype === 'vElement') {
     const dom = document.createElement(vnode.tagName);
     vnode.children.forEach((vnode) => mount(dom, vnode));
     parentDom.appendChild(dom);
-  } else if (vnode.vtype === "vFragment") {
+  } else if (vnode.vtype === 'vFragment') {
     vnode.children.forEach((vnode) => mount(parentDom, vnode));
-  } else if (vnode.vtype === "vComponent") {
+  } else if (vnode.vtype === 'vComponent') {
     const res = vnode.componentFn(vnode.props);
-    if (res.vtype === "vFragment") {
+    if (res.vtype === 'vFragment') {
       res.children.forEach((vnode) => mount(parentDom, vnode));
     } else {
       mount(parentDom, res);
