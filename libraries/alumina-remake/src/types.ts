@@ -1,7 +1,9 @@
 export type JsxContent = VNode | string | number | null | undefined;
 
+export type JsxSourceChildren = JsxContent | JsxContent[];
+
 export type JsxProps = {
-  children: JsxContent[];
+  children?: JsxSourceChildren;
 };
 
 export type VProps = {};

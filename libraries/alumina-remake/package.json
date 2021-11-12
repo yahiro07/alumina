@@ -17,7 +17,8 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "cleanup": "rm -rf dist"
   },
   "devDependencies": {}
 }
