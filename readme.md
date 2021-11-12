@@ -69,7 +69,7 @@ render(Counter, document.getElementById('app'));
   };
   const actions = {
     increment() {
-      state.count *= 2;
+      state.count++;
     },
     reset() {
       state.count = 0;
