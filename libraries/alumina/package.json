@@ -7,17 +7,18 @@
   "license": "MIT",
   "private": true,
   "type": "commonjs",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
   "files": [
     "dist",
     "jsx-runtime",
     "src"
   ],
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "prepublishOnly": "yarn build"
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build": "yarn build:cjs",
+    "watch": "tsc -w -p tsconfig.cjs.json",
+    "prepublishOnly": "yarn build",
+    "cleanup": "rm -rf dist"
   },
   "devDependencies": {}
 }
