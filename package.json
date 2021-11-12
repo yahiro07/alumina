@@ -12,16 +12,20 @@
     "build": "yarn workspace alumina build",
     "watch": "yarn workspace alumina watch",
     "start": "yarn workspace app start",
-    "lint": "eslint . --ext ts,tsx"
+    "lint": "eslint . --ext ts,tsx",
+    "format": "prettier --write ."
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
     "eslint": "^8.2.0",
-    "@typescript-eslint/eslint-plugin": "^5.1.0",
-    "@typescript-eslint/parser": "^5.1.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.26.1"
+    "eslint-plugin-react": "^7.27.0"
+  },
+  "dependencies": {
+    "prettier": "^2.4.1"
   }
 }

@@ -1,17 +1,16 @@
 {
-  "plugins": ["@typescript-eslint", "react", "import", "prettier"],
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json",
     "sourceType": "module",
+    "ecmaVersion": "latest",
     "ecmaFeatures": {
       "jsx": true
-    }
-  },
-  "env": {
-    "node": true,
-    "browser": true,
-    "es6": true
+    },
+    "project": "./tsconfig.json"
   },
   "settings": {
     "import/resolver": {
@@ -22,12 +21,13 @@
       "version": "16.8"
     }
   },
+  "plugins": ["@typescript-eslint", "react", "import", "prettier"],
   "extends": [
     "eslint:recommended",
+    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:import/typescript",
-    "plugin:react/recommended",
     "prettier"
   ],
   "rules": {

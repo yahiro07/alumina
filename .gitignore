@@ -4,4 +4,4 @@ dist/
 yarn-error.log
 .node-version
 .parcel-cache/
-
+.vscode/
