@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-namespace */
 // based on type definition of preact
 // https://github.com/preactjs/preact
 /*
@@ -24,6 +23,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-namespace */
 
 import { VNode } from './core';
 
