@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/no-namespace */
-import { render, jsx } from 'alumina';
+import { render } from 'alumina';
 
 namespace ns0 {
   let count = 0;

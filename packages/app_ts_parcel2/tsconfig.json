@@ -1,8 +1,8 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "jsx": "react",
-    "jsxFactory": "jsx",
+    "jsx": "react-jsx",
+    "jsxImportSource": "alumina",
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
