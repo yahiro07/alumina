@@ -119,8 +119,7 @@ function patchChildren(
   newVNodes: IVNode[],
   oldVNodes: IVNode[],
 ) {
-  // 現状diff/patchに実装コストをかけていない
-  // 将来パフォーマンスが問題になる場合にはここを改善する必要がある
+  // TODO: diff and patch scheme should be considered for better performance
   if (newVNodes.length === oldVNodes.length) {
     for (let i = 0; i < newVNodes.length; i++) {
       const newVNode = newVNodes[i];
@@ -169,9 +168,9 @@ export function patch(parentDom: Node, newVNode: IVNode, oldVNode: IVNode) {
     interactivePropKeys.forEach((key) => {
       const oldValue = oldVNode.props[key];
       const newValue = newVNode.props[key];
-      // value,selected,chekedの値が変わったとき
-      // selectなどで子要素の数が変わったとき
-      // に、値を更新する
+      // update value when the case like
+      //  - the value of value/selected/checked has changed on <input>
+      //  - number of child <option> elements has changed on <select>
       if (
         newValue !== oldValue ||
         newVNode.children.length !== oldVNode.children.length
