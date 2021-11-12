@@ -65,8 +65,12 @@ function flattenArrayIfNested<T>(arr: (T | T[])[]): T[] {
   return arr as T[];
 }
 
-function convertChildren(children: ISourceChild[]): IVNode[] {
-  children = flattenArrayIfNested(children);
+function convertChildren(
+  sourceChildren: ISourceChild | ISourceChild[],
+): IVNode[] {
+  const children = Array.isArray(sourceChildren)
+    ? flattenArrayIfNested(sourceChildren)
+    : [sourceChildren];
   return children.map((child) => {
     if (child === null || child === undefined || child === false) {
       return createVBlank(child);
@@ -85,7 +89,6 @@ function convertChildren(children: ISourceChild[]): IVNode[] {
 export function jsx(
   tagType: string | IVComponentWrapper,
   props: IProps | undefined,
-  ...argsChildren: (string | IVNode)[]
 ): IVNode | null {
   props ||= {};
 
@@ -95,7 +98,7 @@ export function jsx(
   }
 
   if (tagType === (Fragment as any)) {
-    const children = convertChildren(props.children || argsChildren);
+    const children = convertChildren(props.children);
     return { vtype: 'vFragment', children };
   }
 
@@ -105,7 +108,7 @@ export function jsx(
     tagType = getFunctionComponentWrapperCached(tagType);
   }
 
-  const children = convertChildren(props.children || argsChildren);
+  const children = convertChildren(props.children);
   props = { ...props, children };
   const vnode =
     typeof tagType === 'object'
