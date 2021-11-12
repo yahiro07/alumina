@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/no-namespace */
-import { render } from 'alumina';
+import { render, jsx } from 'alumina';
 
 namespace ns0 {
   let count = 0;
@@ -43,7 +43,7 @@ namespace ns2 {
   };
   const actions = {
     increment() {
-      state.count *= 2;
+      state.count++;
     },
     reset() {
       state.count = 0;
@@ -67,7 +67,7 @@ namespace ns2 {
   };
 
   export function run() {
-    render(() => <Counter />, document.getElementById('app'));
+    render(Counter, document.getElementById('app'));
   }
 }
 
