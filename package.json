@@ -6,7 +6,8 @@
   "workspaces": {
     "packages": [
       "libraries/*",
-      "setup-examples/*"
+      "setup-examples/*",
+      "setup-examples-dev/*"
     ]
   },
   "scripts": {

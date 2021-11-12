@@ -21,6 +21,7 @@
       "version": "16.8"
     }
   },
+  "ignorePatterns": ["*.config.js"],
   "plugins": ["@typescript-eslint", "react", "import", "prettier"],
   "extends": [
     "eslint:recommended",
