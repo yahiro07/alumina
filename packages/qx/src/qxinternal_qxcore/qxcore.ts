@@ -1,7 +1,7 @@
-import { interactivePropKeys, svgNs } from 'qx/src/qxinternal_qxcore/constants';
-import { applyDomAttributes } from 'qx/src/qxinternal_qxcore/dom';
-import { createVBlank } from 'qx/src/qxinternal_qxcore/jsx';
-import { IVComponent, IVNode } from 'qx/src/qxinternal_qxcore/types';
+import { interactivePropKeys, svgNs } from './constants';
+import { applyDomAttributes } from './dom';
+import { createVBlank } from './jsx';
+import { IVComponent, IVNode } from './types';
 
 function assert(cond: any) {
   if (!cond) {

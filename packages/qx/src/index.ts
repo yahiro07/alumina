@@ -1,3 +1,4 @@
+import { createContext, useContext } from './contextApi';
 import {
   applyGlobalStyle,
   css,
@@ -21,7 +22,6 @@ import {
   Fragment,
 } from './qxinternal_qxcore';
 import { setShortCssProcessor } from './shortCss';
-import { createContext, useContext } from 'qx/src/contextApi';
 
 export {
   jsx,

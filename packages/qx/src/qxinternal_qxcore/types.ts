@@ -1,4 +1,4 @@
-import { IHookInstance } from 'qx/src/hookImpl';
+import { IHookInstance } from '../hookImpl';
 
 export type IElementProps = {
   id?: string;

@@ -1,4 +1,4 @@
-import { IVNode } from 'qx/src/qxinternal_qxcore/types';
+import { IVNode } from './qxinternal_qxcore/types';
 
 type IContextProvider<T> = (props: { value: T; children: any }) => IVNode;
 

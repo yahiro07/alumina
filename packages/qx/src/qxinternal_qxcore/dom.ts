@@ -1,5 +1,5 @@
-import { attributeIgnoreKeys } from 'qx/src/qxinternal_qxcore/constants';
-import { IVElement } from 'qx/src/qxinternal_qxcore/types';
+import { attributeIgnoreKeys } from './constants';
+import { IVElement } from './types';
 
 export function applyDomAttributes(
   el: Element,
