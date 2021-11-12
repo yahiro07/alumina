@@ -1,5 +1,5 @@
-import { mount, patch } from 'qx/qxinternal_qxcore/qxcore';
-import { IVNode } from 'qx/qxinternal_qxcore/types';
+import { mount, patch } from 'qx/src/qxinternal_qxcore/qxcore';
+import { IVNode } from 'qx/src/qxinternal_qxcore/types';
 
 export { IVNode as VNode } from './types';
 export { jsx, Fragment } from './jsx';

@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import { VNode } from './qxinternal_qxcore';
+import { VNode } from './src/qxinternal_qxcore';
 
 declare namespace JsxLocal {
   type InternalClassAttributes = {

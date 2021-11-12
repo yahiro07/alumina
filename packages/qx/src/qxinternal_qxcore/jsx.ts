@@ -1,5 +1,5 @@
-import { qxInterposeProps } from 'qx/qxInterposeProps';
-import { getFunctionComponentWrapperCached } from 'qx/qxinternal_qxcore/functionComponentWrapper';
+import { qxInterposeProps } from 'qx/src/qxInterposeProps';
+import { getFunctionComponentWrapperCached } from 'qx/src/qxinternal_qxcore/functionComponentWrapper';
 import {
   IProps,
   IVBlank,
@@ -8,7 +8,7 @@ import {
   IVElement,
   IVNode,
   IVText,
-} from 'qx/qxinternal_qxcore/types';
+} from 'qx/src/qxinternal_qxcore/types';
 
 export function createVBlank(value: null | undefined | false): IVBlank {
   return { vtype: 'vBlank', debugSig: `blank__${value}` };

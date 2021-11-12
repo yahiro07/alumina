@@ -3,12 +3,12 @@ import {
   endHooks,
   flushHookEffects,
   startHooks,
-} from 'qx/hookImpl';
+} from 'qx/src/hookImpl';
 import {
   IComponentState,
   IProps,
   IVComponentWrapper,
-} from 'qx/qxinternal_qxcore/types';
+} from 'qx/src/qxinternal_qxcore/types';
 
 const promise = Promise.resolve();
 function doLater(fn: () => void) {

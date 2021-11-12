@@ -21,7 +21,7 @@ import {
   Fragment,
 } from './qxinternal_qxcore';
 import { setShortCssProcessor } from './shortCss';
-import { createContext, useContext } from 'qx/contextApi';
+import { createContext, useContext } from 'qx/src/contextApi';
 
 export {
   jsx,
@@ -85,7 +85,7 @@ export function render(
 
     // const options = { directives: { ref: domRefDirective } };
     // vdomCoreRender(renderFn() as VNode, parentDomNode!, options);
-    vdomCoreRender(renderFn() as any as VNode, parentDomNode);
+    vdomCoreRender(renderFn() as VNode, parentDomNode);
     const t1 = performance.now();
     // eslint-disable-next-line no-constant-condition
     if (0) {
