@@ -5,8 +5,8 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/*",
-      "packages_dev/*"
+      "libraries/*",
+      "setup-examples/*"
     ]
   },
   "scripts": {
