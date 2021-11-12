@@ -1,0 +1,23 @@
+{
+  "name": "alumina",
+  "version": "0.1.0",
+  "description": "vdom framework",
+  "repository": "https://github.com/yahiro07/alumina.git",
+  "author": "yahiro",
+  "license": "MIT",
+  "private": true,
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "jsx-runtime",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prepublishOnly": "yarn build"
+  },
+  "devDependencies": {}
+}
