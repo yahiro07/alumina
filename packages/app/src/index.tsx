@@ -1,53 +1,77 @@
+/* eslint-disable @typescript-eslint/unbound-method */
+/* eslint-disable @typescript-eslint/no-namespace */
 import { render } from 'alumina';
 
-const state = {
-  message: 'hello',
-};
+namespace ns0 {
+  let count = 0;
+  const Counter = () => {
+    return <div onClick={() => count++}>{count}</div>;
+  };
+  export function run() {
+    render(Counter, document.getElementById('app'));
+  }
+}
 
-const TestComponent = () => {
-  return <div id="tc-1-1">tc11</div>;
-};
+namespace ns1 {
+  class CounterModel {
+    count: number = 0;
+    increment = () => {
+      this.count++;
+    };
+  }
+  const counterModel = new CounterModel();
 
-const TestComponent2 = () => {
-  return (
-    <>
-      <div id="tc-2-1">tc21</div>
-      <div id="tc-2-2">tc22</div>
-    </>
-  );
-};
+  const Counter = () => {
+    const { count, increment } = counterModel;
+    return <div onClick={increment}>{count}</div>;
+  };
 
-const TestComponent3 = () => {
-  return (
-    <>
-      <div id="tc-3-1">tc31</div>
-    </>
-  );
-};
+  export function run() {
+    render(() => <Counter />, document.getElementById('app'));
+  }
+}
 
-const TestComponent4 = () => {
-  return (
-    <>
-      <TestComponent3 />
-    </>
-  );
-};
+namespace ns2 {
+  const state = {
+    count: 0,
+  };
+  const getters = {
+    get countDouble() {
+      return state.count * 2;
+    },
+  };
+  const actions = {
+    increment() {
+      state.count *= 2;
+    },
+    reset() {
+      state.count = 0;
+    },
+  };
 
-const AppRoot = () => (
-  <div id="foo" class="bar">
-    <h1>{state.message}</h1>
-    <>
-      <div id="approot-fragment-1">approot-fragment-1</div>
-    </>
-    <TestComponent />
-    <TestComponent2 />
-    <TestComponent4 />
-  </div>
-);
+  const Counter = () => {
+    const { count } = state;
+    const { countDouble } = getters;
+    const { increment, reset } = actions;
+    return (
+      <div>
+        <div>count: {count}</div>
+        <div>x2: {countDouble}</div>
+        <div>
+          <button onClick={increment}>add</button>
+          <button onClick={reset}>reset</button>
+        </div>
+      </div>
+    );
+  };
 
-render(AppRoot, document.getElementById('app'));
+  export function run() {
+    render(() => <Counter />, document.getElementById('app'));
+  }
+}
 
-setTimeout(() => {
-  state.message = 'world';
-  // rerender();
-}, 1000);
+window.addEventListener('load', () => {
+  ns0.run();
+  // ns1.run();
+  // ns2.run();
+});
