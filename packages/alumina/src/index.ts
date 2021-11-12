@@ -1,5 +1,5 @@
 import { createContext, useContext } from './contextApi';
-import { jsx, render as vdomCoreRender, VNode, Fragment } from './core';
+import { Fragment, jsx, render as vdomCoreRender, VNode } from './core';
 import {
   applyGlobalStyle,
   css,
@@ -15,6 +15,7 @@ import {
   useRef,
   useState,
 } from './hookImpl';
+import { JSX } from './jsxTypes';
 import { qxGlobal } from './qxGlobal';
 import { setShortCssProcessor } from './shortCss';
 

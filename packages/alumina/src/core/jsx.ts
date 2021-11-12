@@ -114,4 +114,6 @@ export function jsx(
   return vnode;
 }
 
+export const jsxs = jsx;
+
 export function Fragment() {}
