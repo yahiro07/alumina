@@ -5,16 +5,7 @@
     "moduleResolution": "node",
     "strict": true,
     "lib": ["dom", "esnext"],
-    "jsx": "react",
-    "jsxFactory": "jsx",
-    "jsxFragmentFactory": "Fragment",
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "baseUrl": "./packages",
-    "paths": {
-      "qx": ["./qx"],
-      "qx/*": ["./qx/*"]
-    }
+    "forceConsistentCasingInFileNames": true
   }
 }
