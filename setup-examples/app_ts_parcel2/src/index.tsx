@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/unbound-method */
-import { render } from 'alumina';
+import { render, jsx } from 'alumina';
 
 namespace ns0 {
   let count = 0;
   const Counter = () => {
-    return <div onClick={() => count++}>{count}</div>;
+    return (
+      <div onClick={() => count++}>
+        <h3>counter0</h3>
+        <p>{count}</p>
+      </div>
+    );
   };
   export function run() {
     render(Counter, document.getElementById('app'));
@@ -23,7 +28,12 @@ namespace ns1 {
 
   const Counter = () => {
     const { count, increment } = counterModel;
-    return <div onClick={increment}>{count}</div>;
+    return (
+      <div onClick={increment}>
+        <h3>counter1</h3>
+        <p>{count}</p>
+      </div>
+    );
   };
 
   export function run() {
@@ -55,6 +65,7 @@ namespace ns2 {
     const { increment, reset } = actions;
     return (
       <div>
+        <h3>counter2</h3>
         <div>count: {count}</div>
         <div>x2: {countDouble}</div>
         <div>
@@ -71,7 +82,7 @@ namespace ns2 {
 }
 
 window.addEventListener('load', () => {
-  ns0.run();
+  // ns0.run();
   // ns1.run();
-  // ns2.run();
+  ns2.run();
 });

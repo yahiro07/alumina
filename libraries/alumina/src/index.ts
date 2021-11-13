@@ -1,5 +1,6 @@
 import { createContext, useContext } from './contextApi';
-import { Fragment, jsx, render as vdomCoreRender, VNode } from './core';
+import { Fragment, jsx, render as vdomCoreRender } from './core';
+import { IVNode } from './core/types';
 import {
   applyGlobalStyle,
   css,
@@ -15,7 +16,6 @@ import {
   useRef,
   useState,
 } from './hookImpl';
-import { JSX } from './jsxTypes';
 import { qxGlobal } from './qxGlobal';
 import { setShortCssProcessor } from './shortCss';
 
@@ -37,8 +37,8 @@ export {
   Fragment,
 };
 
-export type FC<T extends {} = {}> = (props: T) => JSX.Element | null;
-export type QxChild = JSX.Element | string;
+export type FC<T extends {} = {}> = (props: T) => IVNode | null;
+export type QxChild = IVNode | string;
 export type QxChildren = QxChild | QxChild[];
 export type QxNode = QxChild;
 
@@ -68,7 +68,7 @@ function setupAsyncRenderLoop() {
 }
 
 export function render(
-  renderFn: () => JSX.Element,
+  renderFn: () => jsx.JSX.Element,
   parentDomNode: HTMLElement | null,
 ) {
   const executeRender = () => {
@@ -81,7 +81,7 @@ export function render(
 
     // const options = { directives: { ref: domRefDirective } };
     // vdomCoreRender(renderFn() as VNode, parentDomNode!, options);
-    vdomCoreRender(renderFn() as VNode, parentDomNode);
+    vdomCoreRender(renderFn() as IVNode, parentDomNode);
     const t1 = performance.now();
     // eslint-disable-next-line no-constant-condition
     if (0) {

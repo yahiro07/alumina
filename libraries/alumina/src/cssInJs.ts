@@ -23,7 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import { JSX } from './jsxTypes';
+import { jsx } from './core/jsx';
 
 const newRule = /(?:([A-Z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/gi;
 const ruleClean = /\/\*[\s\S]*?\*\/|\s{2,}|\n/gm;
@@ -217,20 +217,23 @@ export function setJsxCreateElementFunction(pragma: Function): void {
   jsxCreateElementFunction = pragma;
 }
 
-type IStyledComponentGenerator<T extends keyof JSX.IntrinsicElements> = (
+type IntrinsicElements = jsx.JSX.IntrinsicElements;
+type JsxElement = jsx.JSX.Element;
+
+type IStyledComponentGenerator<T extends keyof IntrinsicElements> = (
   template: TemplateStringsArray,
   ...templateParameters: (string | number)[]
-) => (props: JSX.IntrinsicElements[T]) => JSX.Element;
+) => (props: IntrinsicElements[T]) => JsxElement;
 
 export const styled: {
-  [K in keyof JSX.IntrinsicElements]: IStyledComponentGenerator<K>;
+  [K in keyof IntrinsicElements]: IStyledComponentGenerator<K>;
 } = new Proxy(
   {},
   {
-    get: <K extends keyof JSX.IntrinsicElements>(_target: any, tag: K) => {
+    get: <K extends keyof IntrinsicElements>(_target: any, tag: K) => {
       return (...args: Parameters<typeof css>) => {
         const classNameBase = css(...args);
-        return (props: JSX.IntrinsicElements[K]) => {
+        return (props: IntrinsicElements[K]) => {
           const className = [classNameBase, props.className || ''].join(' ');
           return jsxCreateElementFunction(tag, { ...props, className });
         };
