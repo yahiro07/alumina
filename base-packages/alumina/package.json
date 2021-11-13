@@ -14,12 +14,12 @@
   ],
   "exports": {
     ".": {
-      "require": "./dist/cjs/index",
-      "import": "./dist/esm/index"
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js"
     },
     "./jsx-runtime": {
-      "require": "./dist/cjs/core/jsx",
-      "import": "./dist/esm/core/jsx"
+      "require": "./dist/cjs/core/jsx.js",
+      "import": "./dist/esm/core/jsx.js"
     }
   },
   "scripts": {
