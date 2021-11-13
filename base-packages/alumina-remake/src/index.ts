@@ -1,3 +1,4 @@
+import './jsxTypes';
 import { VNode } from './types';
 
 export { jsx } from './jsx';

@@ -72,13 +72,3 @@ export const jsxs = jsx;
 export function Fragment(): never {
   throw new Error('dummy function never invoked');
 }
-
-export namespace jsx {
-  export namespace JSX {
-    export interface IntrinsicElements {
-      div: { class?: string; id?: string };
-      h1: any;
-      p: any;
-    }
-  }
-}
