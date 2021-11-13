@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/unbound-method */
-import { render, jsx, FC, css } from 'alumina';
+import { render, jsx, FC, css, useState } from 'alumina';
 
 namespace ns0 {
   let count = 0;
@@ -85,8 +85,26 @@ namespace ns2 {
   }
 }
 
+namespace ns3 {
+  const Counter: FC = () => {
+    const [count, setCount] = useState(0);
+    const increment = () => setCount((prev) => prev + 1);
+    return (
+      <div onClick={increment}>
+        <h3>counter3</h3>
+        <p>{count}</p>
+      </div>
+    );
+  };
+
+  export function run() {
+    render(() => <Counter />, document.getElementById('app'));
+  }
+}
+
 window.addEventListener('load', () => {
-  ns0.run();
+  // ns0.run();
   // ns1.run();
   // ns2.run();
+  ns3.run();
 });
