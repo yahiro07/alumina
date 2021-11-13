@@ -6,20 +6,28 @@
   "author": "yahiro",
   "license": "MIT",
   "private": true,
-  "type": "commonjs",
   "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "files": [
     "dist",
-    "src"
+    "src",
+    "jsx-runtime.d.ts"
   ],
   "exports": {
-    ".": "./dist/cjs/index",
-    "./jsx-runtime": "./dist/cjs/core/jsx"
+    ".": {
+      "require": "./dist/cjs/index",
+      "import": "./dist/esm/index"
+    },
+    "./jsx-runtime": {
+      "require": "./dist/cjs/core/jsx",
+      "import": "./dist/esm/core/jsx"
+    }
   },
   "scripts": {
     "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build": "yarn build:cjs",
-    "watch": "tsc -w -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build": "yarn build:cjs && yarn build:esm",
+    "watch": "tsc -w -p tsconfig.esm.json",
     "prepublishOnly": "yarn build",
     "cleanup": "rm -rf dist"
   },
