@@ -15,7 +15,9 @@
     "watch": "yarn workspace alumina watch",
     "start": "yarn workspace app_ts_parcel2 start",
     "lint": "eslint . --ext ts,tsx",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "release:upver": "yarn workspace alumina version --patch",
+    "release:publish": "yarn workspace alumina publish"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.3.1",
