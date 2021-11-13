@@ -23,7 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import { jsx } from './core/jsx';
+// import { JSX } from './jsxTypes';
 
 const newRule = /(?:([A-Z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/gi;
 const ruleClean = /\/\*[\s\S]*?\*\/|\s{2,}|\n/gm;
@@ -217,8 +217,8 @@ export function setJsxCreateElementFunction(pragma: Function): void {
   jsxCreateElementFunction = pragma;
 }
 
-type IntrinsicElements = jsx.JSX.IntrinsicElements;
-type JsxElement = jsx.JSX.Element;
+type IntrinsicElements = JSX.IntrinsicElements;
+type JsxElement = JSX.Element;
 
 type IStyledComponentGenerator<T extends keyof IntrinsicElements> = (
   template: TemplateStringsArray,

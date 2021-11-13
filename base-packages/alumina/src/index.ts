@@ -1,3 +1,4 @@
+import './jsxTypes';
 import { createContext, useContext } from './contextApi';
 import { Fragment, jsx, render as vdomCoreRender } from './core';
 import { IVNode } from './core/types';
@@ -37,8 +38,8 @@ export {
   Fragment,
 };
 
-export type FC<T extends {} = {}> = (props: T) => jsx.JSX.Element | null;
-export type QxChild = jsx.JSX.Element | string;
+export type FC<T extends {} = {}> = (props: T) => JSX.Element | null;
+export type QxChild = JSX.Element | string;
 export type QxChildren = QxChild | QxChild[];
 export type QxNode = QxChild;
 
@@ -68,7 +69,7 @@ function setupAsyncRenderLoop() {
 }
 
 export function render(
-  renderFn: () => jsx.JSX.Element,
+  renderFn: () => JSX.Element,
   parentDomNode: HTMLElement | null,
 ) {
   const executeRender = () => {
