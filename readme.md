@@ -33,7 +33,7 @@ const Counter = () => (
     {count}
   </div>
 )
-render(Counter, document.getElementById('app'));
+render(() => <Counter />, document.getElementById('app'));
 ```
 
 ### Counter (with class model)
@@ -54,7 +54,7 @@ const Counter = () => {
   return <div onClick={increment}>{count}</div>;
 };
 
-render(Counter, document.getElementById('app'));
+render(() => <Counter />, document.getElementById('app'));
 ```
 
 ### Counter (with vuex like state management)
@@ -92,7 +92,7 @@ render(Counter, document.getElementById('app'));
     );
   };
 
-  render(Counter, document.getElementById('app'));
+  render(() => <Counter />, document.getElementById('app'));
 ```
 
 The state management part doesn't depends on how the view updated.
