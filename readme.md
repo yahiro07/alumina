@@ -110,8 +110,9 @@ You can design your store with free ideas!
 │   └── alumina-remake
 ├── example-packages
 │   ├── app_js_webpack
+│   ├── app_ts_estrella
 │   ├── app_ts_parcel2
-│   ├── app_ts_webpack_jsx_classic
+│   ├── app_ts_webpack
 │   └── app_ts_webpack_jsx_runtime
 ├── package.json
 ├── readme.md
