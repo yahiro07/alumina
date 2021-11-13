@@ -1,0 +1,35 @@
+{
+  "name": "alumina",
+  "version": "0.1.0",
+  "description": "vdom framework",
+  "repository": "https://github.com/yahiro07/alumina.git",
+  "author": "yahiro",
+  "license": "MIT",
+  "private": true,
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist",
+    "src",
+    "jsx-runtime.d.ts"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index",
+      "import": "./dist/esm/index"
+    },
+    "./jsx-runtime": {
+      "require": "./dist/cjs/core/jsx",
+      "import": "./dist/esm/core/jsx"
+    }
+  },
+  "scripts": {
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build": "yarn build:cjs && yarn build:esm",
+    "watch": "tsc -w -p tsconfig.esm.json",
+    "prepublishOnly": "yarn build",
+    "cleanup": "rm -rf dist"
+  },
+  "devDependencies": {}
+}
