@@ -91,7 +91,7 @@ export function jsxImpl(
   propsWithoutChildren: IProps,
   sourceChildren: ISourceChildren,
 ): IVNode {
-  const props = propsWithoutChildren;
+  let props = propsWithoutChildren;
 
   const skip = props && 'qxIf' in props && !props.qxIf;
   if (skip) {
@@ -110,6 +110,7 @@ export function jsxImpl(
   }
 
   const children = convertChildren(sourceChildren);
+  props = { ...props, children };
   const vnode =
     typeof tagType === 'object'
       ? createVComponent(tagType, props, children)
@@ -123,14 +124,14 @@ export function jsx(
   ...restArguments: any[]
 ): IVNode {
   const props = _props || {};
-  if (!('children' in props) && Array.isArray(restArguments)) {
-    // classic
-    const children = restArguments;
-    return jsxImpl(vtag, props, children);
-  } else {
+  if ('children' in props) {
     // jsx-runtime
     const { children, ...restProps } = props;
     return jsxImpl(vtag, restProps, children);
+  } else {
+    // classic
+    const children = restArguments;
+    return jsxImpl(vtag, props, children);
   }
 }
 
