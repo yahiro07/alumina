@@ -1,24 +1,27 @@
 ## About
 
-alumina is a yet another react-like small ui framework. It aims to rapid and easy development for small applications.
-In order to make the state management easier, it adopts whole ui re-rendering scheme after each user interaction.
+Alumina is a react-like small UI framework. It aims to rapid and easy development for small applications.
+In order to make the state management easier, it adopts the scheme whole virtual dom tree reconciled after each user interaction.
 Due to that approach, you can write the store or model without complex state management libraries.
 ## Usage 
 
+### Install
 ```
   npm install alumina
 ```
-
+### Configurations
+There are configuration example projects for typescript and well-used bundlers under `./example-packages` in this repository. Please check them for the reference.
+## Code Examples
 ### Hello world
 ```tsx
 import { render } from 'alumina';
 
-const AppRoot = () => (
+const App = () => (
   <div>
     hello world
   </div>
 );
-render(AppRoot, document.getElementById('app'));
+render(() => <App />), document.getElementById('app'));
 
 ```
 
@@ -95,32 +98,36 @@ render(() => <Counter />, document.getElementById('app'));
   render(() => <Counter />, document.getElementById('app'));
 ```
 
-The state management part doesn't depends on how the view updated.
+The state management part doesn't depend on how the view updated.
 You can design your store with free ideas!
 
 ## Repository structure
 
 <pre>
 .
-├── package.json
-├── packages
+├── base-packages
 │   ├── alumina
-│   ├── app
-│   └── app_js_webpack
+│   └── alumina-remake
+├── example-packages
+│   ├── app_js_webpack
+│   ├── app_ts_parcel2
+│   ├── app_ts_webpack_jsx_classic
+│   └── app_ts_webpack_jsx_runtime
+├── package.json
 ├── readme.md
 ├── tsconfig.json
 └── yarn.lock
+
 </pre>
 
-This repository contains core implementation of alumina and use-case example setup project. 
+This repository contains the core implementation of alumina and minimum example projects for various front-end development environments.
 
-| sub package | detail |
+| package | detail |
 | ---- | ---- |
-| alumina | package published to npm |
-| app | example setup with typescript and parcel |
-| app_js_webpack | example setup javascript and webpack | 
+| ./base-packages/alumina | package published to npm |
+| ./example-packages/* | example project setup projects |
 
 
 ## License
 
-alumina is provided under MIT License.
+MIT license.
