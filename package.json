@@ -20,6 +20,7 @@
     "release:publish": "yarn workspace alumina publish"
   },
   "devDependencies": {
+    "@types/node": "^16.11.7",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
     "eslint": "^8.2.0",

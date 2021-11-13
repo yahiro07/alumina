@@ -12,7 +12,6 @@
     "alumina": "*"
   },
   "devDependencies": {
-    "@types/node": "^16.10.2",
     "estrella": "^1.4.1",
     "servor": "^4.0.2"
   }
