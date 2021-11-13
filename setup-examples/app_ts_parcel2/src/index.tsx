@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/unbound-method */
-import { render, jsx } from 'alumina';
+import { render, jsx, FC } from 'alumina';
 
 namespace ns0 {
   let count = 0;
-  const Counter = () => {
+  const Counter: FC = () => {
     return (
       <div onClick={() => count++}>
         <h3>counter0</h3>
@@ -13,7 +13,7 @@ namespace ns0 {
     );
   };
   export function run() {
-    render(Counter, document.getElementById('app'));
+    render(() => <Counter />, document.getElementById('app'));
   }
 }
 
@@ -26,7 +26,7 @@ namespace ns1 {
   }
   const counterModel = new CounterModel();
 
-  const Counter = () => {
+  const Counter: FC = () => {
     const { count, increment } = counterModel;
     return (
       <div onClick={increment}>
@@ -59,7 +59,7 @@ namespace ns2 {
     },
   };
 
-  const Counter = () => {
+  const Counter: FC = () => {
     const { count } = state;
     const { countDouble } = getters;
     const { increment, reset } = actions;
@@ -77,7 +77,7 @@ namespace ns2 {
   };
 
   export function run() {
-    render(Counter, document.getElementById('app'));
+    render(() => <Counter />, document.getElementById('app'));
   }
 }
 

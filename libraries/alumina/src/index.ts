@@ -37,8 +37,8 @@ export {
   Fragment,
 };
 
-export type FC<T extends {} = {}> = (props: T) => IVNode | null;
-export type QxChild = IVNode | string;
+export type FC<T extends {} = {}> = (props: T) => jsx.JSX.Element | null;
+export type QxChild = jsx.JSX.Element | string;
 export type QxChildren = QxChild | QxChild[];
 export type QxNode = QxChild;
 
