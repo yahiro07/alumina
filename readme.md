@@ -127,6 +127,8 @@ This repository contains the core implementation of alumina and minimum example 
 | ./base-packages/alumina | package published to npm |
 | ./example-packages/* | example project setup projects |
 
+## Background
+Alumina is originally developed for the insourcing UI framework for [Kermite](https://kermite.org).
 
 ## License
 
