@@ -53,6 +53,7 @@
     "@typescript-eslint/default-param-last": 1,
     "@typescript-eslint/return-await": 1,
 
+    "react/prop-types": [1, { "ignore": ["children"] }],
     "react/react-in-jsx-scope": 0,
     "react/jsx-key": 1,
     "react/jsx-curly-brace-presence": 1,

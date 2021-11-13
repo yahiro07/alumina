@@ -1,21 +1,38 @@
-import { css, FC, jsx, render } from 'alumina';
+import { css, FC, jsx, QxNode, render, useState } from 'alumina';
 
-let count = 0;
 const Counter: FC = () => {
+  const [count, setCount] = useState(0);
+  const increment = () => setCount(count + 1);
+  const style = css`
+    > h1 {
+      color: blue;
+    }
+  `;
   return (
-    <div onClick={() => count++} class={style}>
-      <h1>ap ts estrella</h1>
+    <div onClick={increment} class={style}>
       <h3>counter</h3>
       <p>{count}</p>
     </div>
   );
 };
-const style = css`
-  > h1 {
-    color: blue;
-  }
-`;
+
+const BoxFrame: FC<{ children: QxNode }> = ({ children }) => {
+  const style = css`
+    border: solid 1px blue;
+  `;
+  return <div class={style}>{children}</div>;
+};
+
+const App: FC = () => {
+  return (
+    <div>
+      <h1>app ts estrella</h1>
+      <BoxFrame>hello</BoxFrame>
+      <Counter />
+    </div>
+  );
+};
 
 window.addEventListener('load', () => {
-  render(() => <Counter />, document.getElementById('app'));
+  render(() => <App />, document.getElementById('app'));
 });
