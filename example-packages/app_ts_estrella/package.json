@@ -1,0 +1,19 @@
+{
+  "name": "app_ts_estrella",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "ts-node build.ts -start",
+    "build": "ts-node build.ts -build"
+  },
+  "dependencies": {
+    "alumina": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^16.10.2",
+    "estrella": "^1.4.1",
+    "servor": "^4.0.2"
+  }
+}
