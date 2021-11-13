@@ -134,6 +134,6 @@ export function jsx(
   }
 }
 
-// export const jsxs = jsx;
+export const jsxs = jsx;
 
 export function Fragment() {}

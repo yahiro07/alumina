@@ -11,8 +11,13 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
+    "jsx-runtime.d.ts",
     "src"
   ],
+  "exports": {
+    ".": "./dist/index",
+    "./jsx-runtime": "./dist/jsx"
+  },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",

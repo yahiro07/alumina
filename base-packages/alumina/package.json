@@ -12,6 +12,10 @@
     "dist",
     "src"
   ],
+  "exports": {
+    ".": "./dist/cjs/index",
+    "./jsx-runtime": "./dist/cjs/core/jsx"
+  },
   "scripts": {
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build": "yarn build:cjs",
