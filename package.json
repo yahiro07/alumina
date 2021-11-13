@@ -5,9 +5,9 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "libraries/*",
-      "setup-examples/*",
-      "setup-examples-dev/*"
+      "base-packages/*",
+      "example-packages/*",
+      "example-packages-dev/*"
     ]
   },
   "scripts": {

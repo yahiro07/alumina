@@ -6097,6 +6097,11 @@ miller-rabin@^4.0.0:
     bn.js "^4.0.0"
     brorand "^1.0.1"
 
+million@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/million/-/million-0.7.0.tgz#cab06763bf242d6b256fa9f8d29970c95b9a8b00"
+  integrity sha512-LC09bOBitXDa4dodsS8hq3WRr+eHmGl3CxQjNFXmEi1uc46HapeCUd6b5yrClHJJ+KFV5X8ILmmGKbIyqs1WCA==
+
 mime-db@1.51.0, "mime-db@>= 1.43.0 < 2":
   version "1.51.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.51.0.tgz#d9ff62451859b18342d960850dc3cfb77e63fb0c"

@@ -6,4 +6,4 @@ yarn-error.log
 .parcel-cache/
 .vscode/
 
-setup-examples-dev/
+example-packages-dev/
