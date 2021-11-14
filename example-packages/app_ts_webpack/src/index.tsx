@@ -1,14 +1,32 @@
-import { render, jsx, rerender, Fragment } from 'alumina';
+import { render, jsx, rerender, Fragment, useEffect } from 'alumina';
 
-let message = 'hello';
+namespace ns0 {
+  let message = 'hello';
+
+  const updateMessageAsync = () => {
+    setTimeout(() => {
+      message = 'world';
+      rerender();
+    }, 1000);
+  };
+
+  export const App = () => {
+    useEffect(updateMessageAsync, []);
+    return (
+      <div>
+        hello {message}
+        <>
+          <p>123</p>
+        </>
+      </div>
+    );
+  };
+}
 
 const AppRoot = () => {
   return (
     <div>
-      hello {message}
-      <>
-        <p>123</p>
-      </>
+      <ns0.App />
     </div>
   );
 };
@@ -16,8 +34,4 @@ const AppRoot = () => {
 window.addEventListener('load', () => {
   console.log('start');
   render(AppRoot, document.getElementById('app'));
-  setTimeout(() => {
-    message = 'world';
-    rerender();
-  }, 1000);
 });
