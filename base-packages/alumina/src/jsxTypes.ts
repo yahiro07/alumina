@@ -45,7 +45,14 @@ declare global {
       class?: string;
     }
 
-    type Element = IVNode | string | number | boolean | null | undefined;
+    type Element =
+      | IVNode
+      | string
+      | number
+      | boolean
+      | null
+      | undefined
+      | Element[];
 
     type ComponentChild = Element;
 
