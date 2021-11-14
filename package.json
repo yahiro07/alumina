@@ -16,8 +16,10 @@
     "start": "yarn workspace app_ts_parcel2 start",
     "lint": "eslint . --ext ts,tsx",
     "format": "prettier --write .",
+    "release:copy_readme": "cp README.md base-packages/alumina/README.md",
     "release:upver": "yarn workspace alumina version --patch",
-    "release:publish": "yarn workspace alumina publish"
+    "release:publish": "yarn workspace alumina publish",
+    "release:all": "yarn release:copy_readme && yarn release:upver && yarn release:publish"
   },
   "devDependencies": {
     "@types/node": "^16.11.7",
