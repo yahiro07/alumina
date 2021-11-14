@@ -93,7 +93,7 @@ export function jsxImpl(
 ): IVNode {
   let props = propsWithoutChildren;
 
-  const skip = props && 'qxIf' in props && !props.qxIf;
+  const skip = props && 'if' in props && !props.if;
   if (skip) {
     return createVBlank(null);
   }

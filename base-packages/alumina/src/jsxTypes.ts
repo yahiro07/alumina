@@ -35,13 +35,13 @@ declare global {
       jsx?: boolean;
       css?: string;
       xs?: string;
-      qxIf?: boolean;
+      if?: boolean;
       ref?: ((el: Element) => void) | { current: any };
     };
 
     interface IntrinsicAttributes {
       key?: any;
-      qxIf?: boolean;
+      if?: boolean;
       class?: string;
     }
 

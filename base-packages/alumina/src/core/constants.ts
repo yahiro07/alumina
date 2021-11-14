@@ -5,7 +5,7 @@ export const interactivePropKeys = ['value', 'selected', 'checked'];
 export const attributeIgnoreKeys = [
   'key',
   'children',
-  'qxIf',
+  'if',
   'ref',
   ...interactivePropKeys,
 ];

@@ -192,6 +192,15 @@ namespace ns7 {
   );
 }
 
+namespace ns8 {
+  export const App = () => (
+    <div>
+      <div>shown</div>
+      <div if={false}>hidden</div>
+    </div>
+  );
+}
+
 const AppRoot = () => (
   <div>
     <ns0.Counter />
@@ -202,6 +211,7 @@ const AppRoot = () => (
     <ns5.Counter />
     <ns6.Counter />
     <ns7.App />
+    <ns8.App />
   </div>
 );
 
