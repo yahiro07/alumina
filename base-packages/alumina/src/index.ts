@@ -39,9 +39,9 @@ export {
 };
 
 export type FC<T extends {} = {}> = (props: T) => JSX.Element | null;
-export type QxChild = JSX.Element | string;
-export type QxChildren = QxChild | QxChild[];
-export type QxNode = QxChild;
+export type AluminaChild = JSX.Element | string;
+export type AluminaChildren = AluminaChild | AluminaChild[];
+export type AluminaNode = AluminaChild;
 
 setJsxCreateElementFunction(jsx);
 

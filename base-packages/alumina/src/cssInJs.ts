@@ -150,7 +150,7 @@ function getLocalSheet(): ILocalSheet {
   if (!gSheet) {
     gSheet = document.createElement('style');
     gSheet.innerHTML = ' ';
-    gSheet.id = 'qx_css_in_js';
+    gSheet.id = 'alumina_css_in_js';
     document.head.appendChild(gSheet);
   }
   return gSheet.firstChild as any;

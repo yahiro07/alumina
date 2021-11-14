@@ -1,4 +1,4 @@
-import { css, FC, jsx, QxNode, render, useState } from 'alumina';
+import { css, FC, jsx, AluminaNode, render, useState } from 'alumina';
 
 const Counter: FC = () => {
   const [count, setCount] = useState(0);
@@ -16,7 +16,7 @@ const Counter: FC = () => {
   );
 };
 
-const BoxFrame: FC<{ children: QxNode }> = ({ children }) => {
+const BoxFrame: FC<{ children: AluminaNode }> = ({ children }) => {
   const style = css`
     border: solid 1px blue;
   `;
