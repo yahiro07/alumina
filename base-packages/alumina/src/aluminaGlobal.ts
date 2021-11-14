@@ -1,4 +1,4 @@
-interface IQxGlobal {
+interface IAluminaGlobal {
   rerender: () => void;
   asyncRerenderFlag: boolean;
   hookEffectFuncs: (() => void)[];
@@ -9,7 +9,7 @@ interface IQxGlobal {
   };
 }
 
-export const qxGlobal: IQxGlobal = {
+export const aluminaGlobal: IAluminaGlobal = {
   rerender: () => {},
   asyncRerenderFlag: false,
   hookEffectFuncs: [],

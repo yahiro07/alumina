@@ -1,4 +1,4 @@
-import { qxGlobal } from './aluminaGlobal';
+import { aluminaGlobal } from './aluminaGlobal';
 import { css } from './cssInJs';
 import { extractShortCss } from './shortCss';
 
@@ -42,7 +42,7 @@ export function interposeProps(props: any, vtype: string | object | Function) {
           ? (...a: any) => {
               // eslint-disable-next-line @typescript-eslint/no-unsafe-call
               originalProc?.(...a);
-              qxGlobal.rerender();
+              aluminaGlobal.rerender();
             }
           : undefined;
       }

@@ -1,5 +1,5 @@
 import './jsxTypes';
-import { qxGlobal } from './aluminaGlobal';
+import { aluminaGlobal } from './aluminaGlobal';
 import { createContext, useContext } from './contextApi';
 import { Fragment, jsx, render as vdomCoreRender } from './core';
 import { IVNode } from './core/types';
@@ -46,20 +46,20 @@ export type QxNode = QxChild;
 setJsxCreateElementFunction(jsx);
 
 export function rerender() {
-  qxGlobal.rerender();
+  aluminaGlobal.rerender();
 }
 
 export function asyncRerender() {
-  qxGlobal.asyncRerenderFlag = true;
+  aluminaGlobal.asyncRerenderFlag = true;
 }
 
 let asyncLoopInitialized = false;
 function setupAsyncRenderLoop() {
   if (!asyncLoopInitialized) {
     const asyncRenderLoop = () => {
-      if (qxGlobal.asyncRerenderFlag) {
-        qxGlobal.rerender();
-        qxGlobal.asyncRerenderFlag = false;
+      if (aluminaGlobal.asyncRerenderFlag) {
+        aluminaGlobal.rerender();
+        aluminaGlobal.asyncRerenderFlag = false;
       }
       requestAnimationFrame(asyncRenderLoop);
     };
@@ -74,7 +74,7 @@ export function render(
 ) {
   const executeRender = () => {
     // console.log(`--------render start--------`);
-    const d = qxGlobal.debug;
+    const d = aluminaGlobal.debug;
     d.nAll = 0;
     d.nUpdated = 0;
     d.nPatchCall = 0;
@@ -98,15 +98,15 @@ export function render(
       // n: dom nodes count
       // ms: time elapsed
     }
-    qxGlobal.hookEffectFuncs.forEach((func) => func());
-    qxGlobal.hookEffectFuncs = [];
-    // if (qxGlobal.hookRerenderFlag) {
-    //   qxGlobal.hookRerenderFlag = false;
+    aluminaGlobal.hookEffectFuncs.forEach((func) => func());
+    aluminaGlobal.hookEffectFuncs = [];
+    // if (aluminaGlobal.hookRerenderFlag) {
+    //   aluminaGlobal.hookRerenderFlag = false;
     //   requestAnimationFrame(executeRender);
     // }
   };
 
-  qxGlobal.rerender = executeRender;
+  aluminaGlobal.rerender = executeRender;
   executeRender();
   setupAsyncRenderLoop();
 }

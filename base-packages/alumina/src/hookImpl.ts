@@ -1,4 +1,4 @@
-import { qxGlobal } from './aluminaGlobal';
+import { aluminaGlobal } from './aluminaGlobal';
 
 type IEffectFunc = () => void | (() => void) | Promise<void>;
 
@@ -177,7 +177,7 @@ export function flushHookEffects(target: IHookInstance, all: boolean = false) {
       if (result && typeof result === 'function') {
         holder.cleanupFunc = result;
       }
-      qxGlobal.asyncRerenderFlag = true;
+      aluminaGlobal.asyncRerenderFlag = true;
       holder.effectFunc = undefined;
     }
   });
