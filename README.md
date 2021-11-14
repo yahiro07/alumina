@@ -210,7 +210,7 @@ const App = () => {
 };
 ```
 
-### if prop
+### If prop
 
 ```tsx
 const App = () => (
@@ -290,6 +290,15 @@ applyGlobalStyle(css`
 `);
 ```
 
+### Class props propagation
+
+```tsx
+  const Foo = () => <div class="foo" />;
+  const App = () => <Foo class="bar" />;
+  // --> renders the DOM <div class="foo bar"></div>
+```
+
+Function component accepts class prop and it is added to the class attribute of the root element of returned dom tree. Useful for decorating child components in parent context.
 
 ## Repository structure
 

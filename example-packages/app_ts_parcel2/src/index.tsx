@@ -230,7 +230,7 @@ namespace ns9 {
 namespace ns10 {
   const Foo = () => <div class="foo" />;
   export const App = () => <Foo class="bar" />;
-  // renders to <div class="foo bar"></div>
+  // renders the DOM <div class="foo bar"></div>
 }
 
 const AppRoot = () => (
