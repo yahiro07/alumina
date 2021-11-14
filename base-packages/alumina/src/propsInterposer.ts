@@ -1,5 +1,5 @@
+import { qxGlobal } from './aluminaGlobal';
 import { css } from './cssInJs';
-import { qxGlobal } from './qxGlobal';
 import { extractShortCss } from './shortCss';
 
 function camelCaseToHyphenCase(str: string) {
@@ -27,10 +27,7 @@ function extractClassNamesToArray(
   return Object.keys(classNames).filter((key) => classNames[key]);
 }
 
-export function qxInterposeProps(
-  props: any,
-  vtype: string | object | Function,
-) {
+export function interposeProps(props: any, vtype: string | object | Function) {
   if (typeof vtype !== 'string') {
     return;
   }

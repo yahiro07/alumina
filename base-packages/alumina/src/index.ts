@@ -1,4 +1,5 @@
 import './jsxTypes';
+import { qxGlobal } from './aluminaGlobal';
 import { createContext, useContext } from './contextApi';
 import { Fragment, jsx, render as vdomCoreRender } from './core';
 import { IVNode } from './core/types';
@@ -17,7 +18,6 @@ import {
   useRef,
   useState,
 } from './hookImpl';
-import { qxGlobal } from './qxGlobal';
 import { setShortCssProcessor } from './shortCss';
 
 export {

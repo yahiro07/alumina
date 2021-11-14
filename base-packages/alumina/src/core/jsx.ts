@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { qxInterposeProps } from '../qxInterposeProps';
+import { interposeProps } from '../propsInterposer';
 import { getFunctionComponentWrapperCached } from './functionComponentWrapper';
 import {
   IProps,
@@ -103,7 +103,7 @@ export function jsxImpl(
     return { vtype: 'vFragment', children };
   }
 
-  qxInterposeProps(props, tagType);
+  interposeProps(props, tagType);
 
   if (typeof tagType === 'function') {
     tagType = getFunctionComponentWrapperCached(tagType);

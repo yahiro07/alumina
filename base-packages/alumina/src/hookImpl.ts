@@ -1,4 +1,4 @@
-import { qxGlobal } from './qxGlobal';
+import { qxGlobal } from './aluminaGlobal';
 
 type IEffectFunc = () => void | (() => void) | Promise<void>;
 
