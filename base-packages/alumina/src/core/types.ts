@@ -63,7 +63,9 @@ export type IVComponent = {
     componentState?: IComponentState;
     renderRes?: IVNode;
   };
-  dom?: Node; // 関数コンポーネントのVNodeと関数コンポーネントのレンダリング結果のルート要素のVNodeが同じdom要素を参照する
+  dom?: Node;
+  // vnode for function component hold the reference of dom element.
+  // and the root vnode of the function result also points the same dom element.
   parentDom?: Node;
 };
 
