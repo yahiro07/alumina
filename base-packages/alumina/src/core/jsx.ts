@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { qxInterposeProps } from '../qxInterposeProps';
+import { interposeProps } from '../propsInterposer';
 import { getFunctionComponentWrapperCached } from './functionComponentWrapper';
 import {
   IProps,
@@ -93,7 +93,7 @@ export function jsxImpl(
 ): IVNode {
   let props = propsWithoutChildren;
 
-  const skip = props && 'qxIf' in props && !props.qxIf;
+  const skip = props && 'if' in props && !props.if;
   if (skip) {
     return createVBlank(null);
   }
@@ -103,7 +103,7 @@ export function jsxImpl(
     return { vtype: 'vFragment', children };
   }
 
-  qxInterposeProps(props, tagType);
+  interposeProps(props, tagType);
 
   if (typeof tagType === 'function') {
     tagType = getFunctionComponentWrapperCached(tagType);

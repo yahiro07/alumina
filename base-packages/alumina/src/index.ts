@@ -1,4 +1,5 @@
 import './jsxTypes';
+import { aluminaGlobal } from './aluminaGlobal';
 import { createContext, useContext } from './contextApi';
 import { Fragment, jsx, render as vdomCoreRender } from './core';
 import { IVNode } from './core/types';
@@ -17,7 +18,6 @@ import {
   useRef,
   useState,
 } from './hookImpl';
-import { qxGlobal } from './qxGlobal';
 import { setShortCssProcessor } from './shortCss';
 
 export {
@@ -39,27 +39,27 @@ export {
 };
 
 export type FC<T extends {} = {}> = (props: T) => JSX.Element | null;
-export type QxChild = JSX.Element | string;
-export type QxChildren = QxChild | QxChild[];
-export type QxNode = QxChild;
+export type AluminaChild = JSX.Element | string;
+export type AluminaChildren = AluminaChild | AluminaChild[];
+export type AluminaNode = AluminaChild;
 
 setJsxCreateElementFunction(jsx);
 
 export function rerender() {
-  qxGlobal.rerender();
+  aluminaGlobal.rerender();
 }
 
 export function asyncRerender() {
-  qxGlobal.asyncRerenderFlag = true;
+  aluminaGlobal.asyncRerenderFlag = true;
 }
 
 let asyncLoopInitialized = false;
 function setupAsyncRenderLoop() {
   if (!asyncLoopInitialized) {
     const asyncRenderLoop = () => {
-      if (qxGlobal.asyncRerenderFlag) {
-        qxGlobal.rerender();
-        qxGlobal.asyncRerenderFlag = false;
+      if (aluminaGlobal.asyncRerenderFlag) {
+        aluminaGlobal.rerender();
+        aluminaGlobal.asyncRerenderFlag = false;
       }
       requestAnimationFrame(asyncRenderLoop);
     };
@@ -73,8 +73,23 @@ export function render(
   parentDomNode: HTMLElement | null,
 ) {
   const executeRender = () => {
+    vdomCoreRender(renderFn() as IVNode, parentDomNode);
+    aluminaGlobal.hookEffectFuncs.forEach((func) => func());
+    aluminaGlobal.hookEffectFuncs = [];
+  };
+  aluminaGlobal.rerender = executeRender;
+  executeRender();
+  setupAsyncRenderLoop();
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function render_debug(
+  renderFn: () => JSX.Element,
+  parentDomNode: HTMLElement | null,
+) {
+  const executeRender = () => {
     // console.log(`--------render start--------`);
-    const d = qxGlobal.debug;
+    const d = aluminaGlobal.debug;
     d.nAll = 0;
     d.nUpdated = 0;
     d.nPatchCall = 0;
@@ -98,15 +113,15 @@ export function render(
       // n: dom nodes count
       // ms: time elapsed
     }
-    qxGlobal.hookEffectFuncs.forEach((func) => func());
-    qxGlobal.hookEffectFuncs = [];
-    // if (qxGlobal.hookRerenderFlag) {
-    //   qxGlobal.hookRerenderFlag = false;
+    aluminaGlobal.hookEffectFuncs.forEach((func) => func());
+    aluminaGlobal.hookEffectFuncs = [];
+    // if (aluminaGlobal.hookRerenderFlag) {
+    //   aluminaGlobal.hookRerenderFlag = false;
     //   requestAnimationFrame(executeRender);
     // }
   };
 
-  qxGlobal.rerender = executeRender;
+  aluminaGlobal.rerender = executeRender;
   executeRender();
   setupAsyncRenderLoop();
 }

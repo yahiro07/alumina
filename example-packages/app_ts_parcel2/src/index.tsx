@@ -192,6 +192,47 @@ namespace ns7 {
   );
 }
 
+namespace ns8 {
+  export const App = () => (
+    <div>
+      <div>shown</div>
+      <div if={false}>hidden</div>
+    </div>
+  );
+}
+
+namespace ns9 {
+  const PageHeader: FC<{ text: string }> = ({ text }) => {
+    const headerStyle = css`
+      color: orange; //this is applied to h1
+    `;
+    return <h1 class={headerStyle}>{text}</h1>;
+  };
+
+  export const Page = () => {
+    const pageStyle = css`
+      > .header-text {
+        border: solid 1px violet; //this is also applied to h1
+      }
+      > .body-text {
+        color: blue;
+      }
+    `;
+    return (
+      <div class={pageStyle}>
+        <PageHeader text="hello1" class="header-text" />
+        <div class="body-text">page content</div>
+      </div>
+    );
+  };
+}
+
+namespace ns10 {
+  const Foo = () => <div class="foo" />;
+  export const App = () => <Foo class="bar" />;
+  // renders the DOM <div class="foo bar"></div>
+}
+
 const AppRoot = () => (
   <div>
     <ns0.Counter />
@@ -202,6 +243,9 @@ const AppRoot = () => (
     <ns5.Counter />
     <ns6.Counter />
     <ns7.App />
+    <ns8.App />
+    <ns9.Page />
+    <ns10.App />
   </div>
 );
 

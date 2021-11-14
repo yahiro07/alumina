@@ -183,6 +183,7 @@ export const Counter = () => {
 
 
 ## Usage Notes
+
 ### Async Update
 
 Alumina automatically updates the view after every DOM callback functions (such like onClick, onMouseMove, ...etc). However for other cases, especially for async function call, `rerender()` function should be invoked explicitly to update the view.
@@ -209,8 +210,23 @@ const App = () => {
 };
 ```
 
-### Hooks
+### If prop
 
+```tsx
+const App = () => (
+  <div>
+    <div>shown</div>
+    <div if={true}>shown</div>
+    <div if={false}>hidden</div>
+    <SomeComponent if={false} />
+  </div>
+);
+```
+
+There is if prop. When falsy value passed, the element is not rendered. It also applicable to function components.
+
+
+### Hooks
 
 Alumina provides following hook functions compatible to React Hooks. 
 
@@ -219,14 +235,16 @@ Alumina provides following hook functions compatible to React Hooks.
 - useCallback
 - useEffect
 - useRef
+
 ### CSS in JS
 
-There is a built-in css in js implementation.
+There is a built-in simple css-in-js implementation.
 
 `css()` function takes css styling string literal and return a className.
 
 ```tsx
 import { css, jsx } from 'alumina';
+
 const Hello = () => (
   <div
     class={css`
@@ -240,10 +258,11 @@ const Hello = () => (
 );
 ```
 
-`styled()` can be used to create an element with attached style.
+`styled()` decorates an element with attached style.
 
 ```tsx
 import { styled } from 'alumina';
+
 const StyledCard = styled.div`
   border: solid 1px blue;
   border-radius: 10px;
@@ -256,6 +275,7 @@ const StyledCard = styled.div`
 
 ```tsx
 import { applyGlobalStyle } from 'alumina';
+
 applyGlobalStyle(css`
   * {
     box-sizing: border-box;
@@ -270,6 +290,15 @@ applyGlobalStyle(css`
 `);
 ```
 
+### Class props propagation
+
+```tsx
+  const Foo = () => <div class="foo" />;
+  const App = () => <Foo class="bar" />;
+  // --> renders the DOM <div class="foo bar"></div>
+```
+
+Function component accepts class prop and it is added to the class attribute of the root element of returned dom tree. Useful for decorating child components in parent context.
 
 ## Repository structure
 

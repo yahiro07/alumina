@@ -52,15 +52,15 @@ function createFunctionComponentWrapper(
 }
 
 type IRenderFunction = Function & {
-  __QxFunctionComponentWrapper?: any;
+  __AluminaFunctionComponentWrapper?: any;
 };
 
 export function getFunctionComponentWrapperCached(
   renderFunction: IRenderFunction,
 ) {
-  if (!renderFunction.__QxFunctionComponentWrapper) {
-    renderFunction.__QxFunctionComponentWrapper =
+  if (!renderFunction.__AluminaFunctionComponentWrapper) {
+    renderFunction.__AluminaFunctionComponentWrapper =
       createFunctionComponentWrapper(renderFunction);
   }
-  return renderFunction.__QxFunctionComponentWrapper;
+  return renderFunction.__AluminaFunctionComponentWrapper;
 }

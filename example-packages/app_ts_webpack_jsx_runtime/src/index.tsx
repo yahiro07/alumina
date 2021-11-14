@@ -1,8 +1,8 @@
-import { css, FC, QxNode, render, rerender } from 'alumina';
+import { css, FC, AluminaNode, render, rerender } from 'alumina';
 
 let message = 'hello';
 
-const BoxFrame: FC<{ children: QxNode }> = ({ children }) => {
+const BoxFrame: FC<{ children: AluminaNode }> = ({ children }) => {
   const style = css`
     border: solid 1px blue;
   `;

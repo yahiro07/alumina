@@ -23,8 +23,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-// import { JSX } from './jsxTypes';
-
 const newRule = /(?:([A-Z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/gi;
 const ruleClean = /\/\*[\s\S]*?\*\/|\s{2,}|\n/gm;
 
@@ -150,7 +148,7 @@ function getLocalSheet(): ILocalSheet {
   if (!gSheet) {
     gSheet = document.createElement('style');
     gSheet.innerHTML = ' ';
-    gSheet.id = 'qx_css_in_js';
+    gSheet.id = 'alumina_css_in_js';
     document.head.appendChild(gSheet);
   }
   return gSheet.firstChild as any;
