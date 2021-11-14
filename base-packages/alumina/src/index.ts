@@ -73,6 +73,21 @@ export function render(
   parentDomNode: HTMLElement | null,
 ) {
   const executeRender = () => {
+    vdomCoreRender(renderFn() as IVNode, parentDomNode);
+    aluminaGlobal.hookEffectFuncs.forEach((func) => func());
+    aluminaGlobal.hookEffectFuncs = [];
+  };
+  aluminaGlobal.rerender = executeRender;
+  executeRender();
+  setupAsyncRenderLoop();
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function render_debug(
+  renderFn: () => JSX.Element,
+  parentDomNode: HTMLElement | null,
+) {
+  const executeRender = () => {
     // console.log(`--------render start--------`);
     const d = aluminaGlobal.debug;
     d.nAll = 0;
