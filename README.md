@@ -1,17 +1,25 @@
-## About
+# Alumina
 
 Alumina is a react-like small UI framework. It aims to rapid and easy development for small applications.
+
 In order to make the state management easier, it adopts the scheme whole virtual dom tree reconciled after each user interaction.
 Due to that approach, you can write the store or model without complex state management libraries.
+
+We are more concerned with development easiness than execution performance. The application code looks close as React, but the behavior is well inspired by Mithril.
+
+
 ## Usage 
 
 ### Install
 ```
   npm install alumina
 ```
+
 ### Configurations
 There are configuration example projects for typescript and well-used bundlers under `./example-packages` in this repository. Please check them for the reference.
+
 ## Basic Examples
+
 ### Hello world
 ```tsx
 import { render, jsx } from 'alumina';
