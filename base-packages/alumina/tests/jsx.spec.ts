@@ -33,10 +33,12 @@ describe('jsx classic', () => {
 
 describe('jsx runtime', () => {
   // TODO: check transformation for blank children
-  // test('create vnode, blank props, no children', () => {
-  //   const vnode = jsx('h2', { children: undefined }) as IVElement;
+  // test('create vnode, with props, no children, with key', () => {
+  //   const vnode = jsx('h2', { foo: 'bar' }, 'kk') as IVElement;
   //   expect(vnode.vtype).toBe('vElement');
   //   expect(vnode.tagName).toBe('h2');
+  //   expect(vnode.props.foo).toBe('bar');
+  //   expect(vnode.props.key).toBe('kk');
   //   expect(vnode.children.length).toBe(0);
   // });
 

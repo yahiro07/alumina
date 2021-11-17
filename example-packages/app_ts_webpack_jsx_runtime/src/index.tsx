@@ -15,6 +15,7 @@ const App: FC = () => {
       <h1>app ts webpack jsx runtime</h1>
       <div>hello {message}</div>
       <BoxFrame>foo</BoxFrame>
+      <input type="number" key="input1"></input>
     </div>
   );
 };
