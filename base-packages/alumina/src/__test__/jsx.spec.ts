@@ -20,10 +20,12 @@ describe('jsx classic', () => {
   });
 
   test('create vnode, with props, with children', () => {
-    const vnode = jsx('h2', { foo: 'bar', key: 'kk' }, [
+    const vnode = jsx(
+      'h2',
+      { foo: 'bar', key: 'kk' },
       'aaa',
       'bbb',
-    ]) as IVElement;
+    ) as IVElement;
     expect(vnode.vtype).toBe('vElement');
     expect(vnode.tagName).toBe('h2');
     expect(vnode.props.foo).toBe('bar');

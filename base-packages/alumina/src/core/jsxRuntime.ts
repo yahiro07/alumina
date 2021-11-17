@@ -1,18 +1,16 @@
-import { jsx as jsxClassic } from './jsx';
+import { jsxCore } from './jsx';
 import { IProps, IVComponentWrapper, IVNode } from './types';
 
 export function jsx(
   vtag: string | IVComponentWrapper,
-  _props: IProps | null,
+  props: IProps | null,
   key: string | undefined,
 ): IVNode {
-  const props = _props || {};
-  const { children, ...restProps } = props;
-  const propsWithKey = key !== undefined ? { ...restProps, key } : restProps;
-  if (children) {
-    return jsxClassic(vtag, propsWithKey, ...children);
+  props ||= {};
+  if (key) {
+    return jsxCore(vtag, { ...props, key });
   } else {
-    return jsxClassic(vtag, propsWithKey);
+    return jsxCore(vtag, props);
   }
 }
 

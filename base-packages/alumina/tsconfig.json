@@ -10,7 +10,9 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "sourceMap": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "jsx": "react",
+    "jsxFactory": "jsx"
   },
   "include": ["src"]
 }
