@@ -1,6 +1,6 @@
-import { jsx } from '../src/core/jsx';
-import { jsx as jsxr } from '../src/core/jsxRuntime';
-import { IVElement } from '../src/core/types';
+import { jsx } from '../core/jsx';
+import { jsx as jsxr } from '../core/jsxRuntime';
+import { IVElement } from '../core/types';
 
 describe('jsx classic', () => {
   test('create vnode, blank props, no children', () => {
