@@ -5,8 +5,8 @@
   "repository": "https://github.com/yahiro07/alumina.git",
   "author": "yahiro",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/cjs/src/index.js",
+  "module": "dist/esm/src/index.js",
   "files": [
     "dist",
     "src",
@@ -14,12 +14,12 @@
   ],
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/esm/index.js"
+      "require": "./dist/cjs/src/index.js",
+      "import": "./dist/esm/src/index.js"
     },
     "./jsx-runtime": {
-      "require": "./dist/cjs/core/jsx.js",
-      "import": "./dist/esm/core/jsx.js"
+      "require": "./dist/cjs/src/core/jsx.js",
+      "import": "./dist/esm/src/core/jsx.js"
     }
   },
   "scripts": {
