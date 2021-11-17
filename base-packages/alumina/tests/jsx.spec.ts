@@ -1,8 +1,59 @@
-import { jsx } from '..';
+import { jsx } from '../src/core/jsx';
+import { IVElement } from '../src/core/types';
 
-describe('jsx', () => {
-  test('test test', () => {
-    expect(1 + 1).toBe(2);
-    expect(typeof jsx).toBe('function');
+describe('jsx classic', () => {
+  test('create vnode, blank props, no children', () => {
+    const vnode = jsx('h2', {}) as IVElement;
+    expect(vnode.vtype).toBe('vElement');
+    expect(vnode.tagName).toBe('h2');
+    expect(vnode.children.length).toBe(0);
+  });
+
+  test('create vnode, with props, no children', () => {
+    const vnode = jsx('h2', { foo: 'bar', key: 'kk' }) as IVElement;
+    expect(vnode.vtype).toBe('vElement');
+    expect(vnode.tagName).toBe('h2');
+    expect(vnode.props.foo).toBe('bar');
+    expect(vnode.props.key).toBe('kk');
+    expect(vnode.children.length).toBe(0);
+  });
+
+  test('create vnode, with props, with children', () => {
+    const vnode = jsx('h2', { foo: 'bar', key: 'kk' }, [
+      'aaa',
+      'bbb',
+    ]) as IVElement;
+    expect(vnode.vtype).toBe('vElement');
+    expect(vnode.tagName).toBe('h2');
+    expect(vnode.props.foo).toBe('bar');
+    expect(vnode.props.key).toBe('kk');
+    expect(vnode.children.length).toBe(2);
+  });
+});
+
+describe('jsx runtime', () => {
+  // TODO: check transformation for blank children
+  // test('create vnode, blank props, no children', () => {
+  //   const vnode = jsx('h2', { children: undefined }) as IVElement;
+  //   expect(vnode.vtype).toBe('vElement');
+  //   expect(vnode.tagName).toBe('h2');
+  //   expect(vnode.children.length).toBe(0);
+  // });
+
+  test('create vnode, with props, with children', () => {
+    const vnode = jsx(
+      'h2',
+      {
+        foo: 'bar',
+        children: ['aaa', 'bbb'],
+      },
+      'kk',
+    ) as IVElement;
+    // console.log(JSON.stringify(vnode, null, ' '));
+    expect(vnode.vtype).toBe('vElement');
+    expect(vnode.tagName).toBe('h2');
+    expect(vnode.props.foo).toBe('bar');
+    expect(vnode.props.key).toBe('kk');
+    expect(vnode.children.length).toBe(2);
   });
 });
