@@ -127,7 +127,9 @@ export function jsx(
   if ('children' in props) {
     // jsx-runtime
     const { children, ...restProps } = props;
-    return jsxImpl(vtag, restProps, children);
+    const key = restArguments[0];
+    const propsWithKey = key !== undefined ? { ...restProps, key } : restProps;
+    return jsxImpl(vtag, propsWithKey, children);
   } else {
     // classic
     const children = restArguments;
