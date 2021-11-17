@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import { render, jsx, rerender, useEffect, css } from 'alumina';
+import { render, jsx, rerender, useEffect, css, styled } from 'alumina';
 
 namespace ns0 {
   let message = 'hello';
@@ -73,6 +73,21 @@ namespace ns3 {
   };
 }
 
+namespace ns4 {
+  const CardFrame = styled.div`
+    border: solid 1px blue;
+    padding: 20px;
+  `;
+
+  export const App = () => {
+    return (
+      <div>
+        <CardFrame>card content</CardFrame>
+      </div>
+    );
+  };
+}
+
 const AppRoot = () => {
   const style = css`
     font-size: 30px;
@@ -84,6 +99,7 @@ const AppRoot = () => {
       <ns1.Dolphins />
       <ns2.Whales />
       <ns3.App />
+      <ns4.App />
     </div>
   );
 };
