@@ -13,6 +13,7 @@
   "scripts": {
     "build": "yarn workspace alumina build",
     "watch": "yarn workspace alumina watch",
+    "test": "yarn workspace alumina test",
     "start": "yarn workspace app_ts_webpack start",
     "lint": "eslint . --ext ts,tsx",
     "format": "prettier --write .",
