@@ -86,20 +86,19 @@ function convertChildren(sourceChildren: ISourceChildren): IVNode[] {
   });
 }
 
-export function jsxImpl(
+export function jsx(
   tagType: string | IVComponentWrapper,
-  propsWithoutChildren: IProps,
-  sourceChildren: ISourceChildren,
+  _props: IProps,
+  ..._children: any[]
 ): IVNode {
-  let props = propsWithoutChildren;
-
+  let props = _props || {};
   const skip = props && 'if' in props && !props.if;
   if (skip) {
     return createVBlank(null);
   }
 
   if (tagType === (Fragment as any)) {
-    const children = convertChildren(sourceChildren);
+    const children = convertChildren(_children);
     return { vtype: 'vFragment', children };
   }
 
@@ -109,7 +108,7 @@ export function jsxImpl(
     tagType = getFunctionComponentWrapperCached(tagType);
   }
 
-  const children = convertChildren(sourceChildren);
+  const children = convertChildren(_children);
   props = { ...props, children };
   const vnode =
     typeof tagType === 'object'
@@ -117,24 +116,5 @@ export function jsxImpl(
       : createVElement(tagType, props, children);
   return vnode;
 }
-
-export function jsx(
-  vtag: string | IVComponentWrapper,
-  _props: IProps | null,
-  ...restArguments: any[]
-): IVNode {
-  const props = _props || {};
-  if ('children' in props) {
-    // jsx-runtime
-    const { children, ...restProps } = props;
-    return jsxImpl(vtag, restProps, children);
-  } else {
-    // classic
-    const children = restArguments;
-    return jsxImpl(vtag, props, children);
-  }
-}
-
-export const jsxs = jsx;
 
 export function Fragment() {}

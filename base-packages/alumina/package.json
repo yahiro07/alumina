@@ -18,8 +18,8 @@
       "import": "./dist/esm/index.js"
     },
     "./jsx-runtime": {
-      "require": "./dist/cjs/core/jsx.js",
-      "import": "./dist/esm/core/jsx.js"
+      "require": "./dist/cjs/core/jsxRuntime.js",
+      "import": "./dist/esm/core/jsxRuntime.js"
     }
   },
   "scripts": {
@@ -28,7 +28,8 @@
     "build": "yarn build:cjs && yarn build:esm",
     "watch": "tsc -w -p tsconfig.esm.json",
     "prepublishOnly": "yarn build",
-    "cleanup": "rm -rf dist"
+    "cleanup": "rm -rf dist",
+    "test": "jest"
   },
   "devDependencies": {}
 }
