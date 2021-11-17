@@ -6,10 +6,11 @@
     "lib": ["dom", "esnext"],
     "strict": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "sourceMap": true,
     "outDir": "./dist"
   },
-  "include": ["src"]
+  "include": ["src", "tests"]
 }

@@ -28,7 +28,8 @@
     "build": "yarn build:cjs && yarn build:esm",
     "watch": "tsc -w -p tsconfig.esm.json",
     "prepublishOnly": "yarn build",
-    "cleanup": "rm -rf dist"
+    "cleanup": "rm -rf dist",
+    "test": "jest"
   },
   "devDependencies": {}
 }
