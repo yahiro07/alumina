@@ -35,7 +35,6 @@ describe('jsx classic', () => {
 describe('jsx runtime', () => {
   test('create vnode, blank props, no children', () => {
     const vnode = jsxr('h2', {}, undefined) as IVElement;
-    console.log(JSON.stringify(vnode, null, ' '));
     expect(vnode.vtype).toBe('vElement');
     expect(vnode.tagName).toBe('h2');
     expect(vnode.children.length).toBe(0);
