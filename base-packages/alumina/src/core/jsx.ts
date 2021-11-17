@@ -86,19 +86,25 @@ function convertChildren(sourceChildren: ISourceChildren): IVNode[] {
   });
 }
 
-export function jsx(
+function convertPropsChildren(props: IProps): IVNode[] {
+  if ('children' in props) {
+    return convertChildren(props.children);
+  } else {
+    return [];
+  }
+}
+
+export function jsxCore(
   tagType: string | IVComponentWrapper,
-  _props: IProps,
-  ..._children: any[]
+  props: IProps,
 ): IVNode {
-  let props = _props || {};
   const skip = props && 'if' in props && !props.if;
   if (skip) {
     return createVBlank(null);
   }
 
   if (tagType === (Fragment as any)) {
-    const children = convertChildren(_children);
+    const children = convertPropsChildren(props);
     return { vtype: 'vFragment', children };
   }
 
@@ -108,13 +114,26 @@ export function jsx(
     tagType = getFunctionComponentWrapperCached(tagType);
   }
 
-  const children = convertChildren(_children);
+  const children = convertPropsChildren(props);
   props = { ...props, children };
   const vnode =
     typeof tagType === 'object'
       ? createVComponent(tagType, props, children)
       : createVElement(tagType, props, children);
   return vnode;
+}
+
+export function jsx(
+  tagType: string | IVComponentWrapper,
+  props: IProps | null,
+  ...children: any[]
+): IVNode {
+  props ||= {};
+  if (children.length > 0) {
+    return jsxCore(tagType, { ...props, children });
+  } else {
+    return jsxCore(tagType, props);
+  }
 }
 
 export function Fragment() {}
