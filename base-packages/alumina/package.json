@@ -18,8 +18,8 @@
       "import": "./dist/esm/src/index.js"
     },
     "./jsx-runtime": {
-      "require": "./dist/cjs/src/core/jsx.js",
-      "import": "./dist/esm/src/core/jsx.js"
+      "require": "./dist/cjs/src/core/jsxRuntime.js",
+      "import": "./dist/esm/src/core/jsxRuntime.js"
     }
   },
   "scripts": {
