@@ -1,4 +1,5 @@
 import { jsx } from '../src/core/jsx';
+import { jsx as jsxr } from '../src/core/jsxRuntime';
 import { IVElement } from '../src/core/types';
 
 describe('jsx classic', () => {
@@ -32,30 +33,36 @@ describe('jsx classic', () => {
 });
 
 describe('jsx runtime', () => {
-  // TODO: check transformation for blank children
-  // test('create vnode, with props, no children, with key', () => {
-  //   const vnode = jsx('h2', { foo: 'bar' }, 'kk') as IVElement;
-  //   expect(vnode.vtype).toBe('vElement');
-  //   expect(vnode.tagName).toBe('h2');
-  //   expect(vnode.props.foo).toBe('bar');
-  //   expect(vnode.props.key).toBe('kk');
-  //   expect(vnode.children.length).toBe(0);
-  // });
+  test('create vnode, blank props, no children', () => {
+    const vnode = jsxr('h2', {}, undefined) as IVElement;
+    console.log(JSON.stringify(vnode, null, ' '));
+    expect(vnode.vtype).toBe('vElement');
+    expect(vnode.tagName).toBe('h2');
+    expect(vnode.children.length).toBe(0);
+  });
+
+  test('create vnode, with props, no children, with key', () => {
+    const vnode = jsxr('h2', { foo: 'bar' }, 'kk') as IVElement;
+    expect(vnode.vtype).toBe('vElement');
+    expect(vnode.tagName).toBe('h2');
+    expect(vnode.props.foo).toBe('bar');
+    expect(vnode.props.key).toBe('kk');
+    expect(vnode.children.length).toBe(0);
+  });
 
   test('create vnode, with props, with children', () => {
-    const vnode = jsx(
+    const vnode = jsxr(
       'h2',
       {
         foo: 'bar',
         children: ['aaa', 'bbb'],
       },
-      'kk',
+      undefined,
     ) as IVElement;
     // console.log(JSON.stringify(vnode, null, ' '));
     expect(vnode.vtype).toBe('vElement');
     expect(vnode.tagName).toBe('h2');
     expect(vnode.props.foo).toBe('bar');
-    expect(vnode.props.key).toBe('kk');
     expect(vnode.children.length).toBe(2);
   });
 });
