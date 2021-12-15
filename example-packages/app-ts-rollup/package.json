@@ -1,0 +1,24 @@
+{
+  "name": "app-ts-rollup",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "rollup -c",
+    "start": "rollup -cw"
+  },
+  "dependencies": {
+    "alumina": "^0.1.8"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.1.1",
+    "rollup": "^2.61.1",
+    "rollup-plugin-generate-html-template": "^1.7.0",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "rollup-watch": "^4.3.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4"
+  }
+}
