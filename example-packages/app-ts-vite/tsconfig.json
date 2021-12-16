@@ -4,12 +4,12 @@
     "module": "esnext",
     "moduleResolution": "node",
     "lib": ["esnext", "dom"],
+    "jsx": "react",
+    "jsxFactory": "jsx",
     "strict": true,
-    "sourceMap": true,
     "esModuleInterop": true,
     "noEmit": true,
-    "jsx": "react",
-    "jsxFactory": "jsx"
+    "sourceMap": true
   },
   "include": ["./src"]
 }
