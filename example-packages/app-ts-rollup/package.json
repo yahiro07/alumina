@@ -8,7 +8,7 @@
     "start": "rollup -cw"
   },
   "dependencies": {
-    "alumina": "^0.1.8"
+    "alumina": "*"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.1.1",
