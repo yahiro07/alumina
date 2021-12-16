@@ -7,7 +7,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "alumina": "^0.1.8"
+    "alumina": "*"
   },
   "devDependencies": {
     "typescript": "^4.4.4",

@@ -1,13 +1,13 @@
-import * as fs from 'fs';
-import { build, cliopts } from 'estrella';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable */
+const fs = require('fs');
+const { build, cliopts } = require('estrella');
 const servor = require('servor');
 
 const [opts] = cliopts.parse(['start', 'debug app'], ['build', 'build app']);
 const reqStart = opts['start'];
 const reqBuild = opts['build'];
 
-function launchDebugServer(distDir: string) {
+function launchDebugServer(distDir) {
   servor({
     root: distDir,
     fallback: 'index.html',

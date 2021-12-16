@@ -5,8 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "ts-node build.ts -start",
-    "build": "ts-node build.ts -build"
+    "start": "node build.js -start",
+    "build": "node build.js -build"
   },
   "dependencies": {
     "alumina": "*"
