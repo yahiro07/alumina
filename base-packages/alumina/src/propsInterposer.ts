@@ -1,6 +1,4 @@
 import { aluminaGlobal } from './aluminaGlobal';
-import { css } from './cssInJs';
-import { extractShortCss } from './shortCss';
 
 function camelCaseToHyphenCase(str: string) {
   return str.replace(/[A-Z]/g, (s) => '-' + s.charAt(0).toLowerCase());
@@ -35,23 +33,16 @@ export function interposeProps(props: any, vtype: string | object | Function) {
           : undefined;
       }
     }
-    if (props.css || props.class || props.className || props.xs) {
-      const xsClassName =
-        props.xs &&
-        css`
-          ${extractShortCss(props.xs)}
-        `;
+    if (props.css || props.class || props.className) {
       const classes = [
         props.css,
         ...(Array.isArray(props.class) ? props.class : [props.class]),
         props.className,
-        xsClassName,
       ]
         .filter((a) => !!a)
         .join(' ');
       delete props.css;
       delete props.className;
-      delete props.xs;
       props.class = classes;
     }
     if (props.style && typeof props.style === 'object') {

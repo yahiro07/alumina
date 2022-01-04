@@ -34,7 +34,6 @@ declare global {
       key?: string | number;
       jsx?: boolean;
       css?: string;
-      xs?: string;
       if?: boolean | string | object;
       ref?: ((el: Element) => void) | { current: any };
     };

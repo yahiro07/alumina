@@ -18,14 +18,12 @@ import {
   useRef,
   useState,
 } from './hookImpl';
-import { setShortCssProcessor } from './shortCss';
 
 export {
   jsx,
   css,
   styled,
   applyGlobalStyle,
-  setShortCssProcessor,
   useState,
   useLocal,
   useMemo,
