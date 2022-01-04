@@ -34,15 +34,16 @@ declare global {
       key?: string | number;
       jsx?: boolean;
       css?: string;
-      xs?: string;
-      if?: boolean;
+      if?: boolean | string | object;
       ref?: ((el: Element) => void) | { current: any };
     };
 
+    type ClassItem = string | boolean | undefined;
+
     interface IntrinsicAttributes {
       key?: any;
-      if?: boolean;
-      class?: string;
+      if?: boolean | string | object;
+      class?: ClassItem | ClassItem[];
     }
 
     type Element =
@@ -657,7 +658,8 @@ declare global {
       charSet?: string;
       challenge?: string;
       checked?: boolean;
-      class?: string | false;
+      // class?: string;
+      class?: ClassItem | ClassItem[];
       className?: string | false;
       cols?: number;
       colSpan?: number;
@@ -785,9 +787,6 @@ declare global {
       itemType?: string;
       itemID?: string;
       itemRef?: string;
-
-      // extended multiple classNames
-      classNames?: (string | undefined | false)[] | { [key: string]: boolean };
     }
 
     interface HTMLMarqueeElement extends HTMLElement {
