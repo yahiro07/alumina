@@ -11,6 +11,14 @@ function doLater(fn: () => void) {
   promise.then(fn);
 }
 
+function stringifyClasses(classes: string[] | string): string {
+  if (Array.isArray(classes)) {
+    return classes.filter((a) => !!a).join(' ');
+  } else {
+    return classes;
+  }
+}
+
 function createFunctionComponentWrapper(
   renderFunction: Function,
 ): IVComponentWrapper {
@@ -31,9 +39,10 @@ function createFunctionComponentWrapper(
           props.class &&
           (vnode.vtype === 'vElement' || vnode.vtype === 'vComponent')
         ) {
+          const fcClasses = stringifyClasses(props.class);
           vnode.props.class = vnode.props.class
-            ? `${vnode.props.class} ${props.class}`
-            : props.class;
+            ? `${vnode.props.class} ${fcClasses}`
+            : fcClasses;
         }
         endHooks();
         doLater(() => flushHookEffects(self.hook));

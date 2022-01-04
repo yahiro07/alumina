@@ -19,6 +19,13 @@ const TitleWithButton: FC<{ text: string; handler?: () => void }> = ({
   </div>
 );
 
+const TestComponentWithStringClass: FC = () => (
+  <div class="alpha">div with string class</div>
+);
+const TestComponentWithArrayClasses: FC = () => (
+  <div class={['beta', 'gamma', false]}>div with array classes</div>
+);
+
 const user = {
   name: 'yamada',
   age: 20,
@@ -31,6 +38,15 @@ const App: FC = () => {
       <div if={user}>{user.name}</div>
       <TitleWithButton text="foo" />
       <TitleWithButton text="bar" handler={() => alert('hello')} />
+      <div class={['foo', 'bar']}>aaa</div>
+      <div class={['foo', user.age < 20 && 'bar']}>bbb</div>
+
+      <TestComponentWithStringClass class="delta" />
+      <TestComponentWithStringClass
+        class={['delta', 'epsilon', false, undefined]}
+      />
+      <TestComponentWithArrayClasses class="delta" />
+      <TestComponentWithArrayClasses class={['delta', 'epsilon', undefined]} />
     </div>
   );
 };

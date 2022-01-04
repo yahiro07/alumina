@@ -62,7 +62,7 @@ export function interposeProps(props: any, vtype: string | object | Function) {
         `;
       const classes = [
         props.css,
-        props.class,
+        ...(Array.isArray(props.class) ? props.class : [props.class]),
         props.className,
         xsClassName,
         ...classNamesArray,

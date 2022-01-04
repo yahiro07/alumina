@@ -39,10 +39,12 @@ declare global {
       ref?: ((el: Element) => void) | { current: any };
     };
 
+    type ClassItem = string | boolean | undefined;
+
     interface IntrinsicAttributes {
       key?: any;
       if?: boolean | string | object;
-      class?: string;
+      class?: ClassItem | ClassItem[];
     }
 
     type Element =
@@ -657,7 +659,8 @@ declare global {
       charSet?: string;
       challenge?: string;
       checked?: boolean;
-      class?: string | false;
+      // class?: string;
+      class?: ClassItem | ClassItem[];
       className?: string | false;
       cols?: number;
       colSpan?: number;
