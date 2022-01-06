@@ -33,15 +33,13 @@ export function interposeProps(props: any, vtype: string | object | Function) {
           : undefined;
       }
     }
-    if (props.css || props.class || props.className) {
+    if (props.class || props.className) {
       const classes = [
-        props.css,
         ...(Array.isArray(props.class) ? props.class : [props.class]),
         props.className,
       ]
         .filter((a) => !!a)
         .join(' ');
-      delete props.css;
       delete props.className;
       props.class = classes;
     }
