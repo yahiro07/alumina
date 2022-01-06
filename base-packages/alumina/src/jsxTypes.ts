@@ -33,7 +33,6 @@ declare global {
     type InternalClassAttributes = {
       key?: string | number;
       jsx?: boolean;
-      css?: string;
       if?: boolean | string | object;
       ref?: ((el: Element) => void) | { current: any };
     };
