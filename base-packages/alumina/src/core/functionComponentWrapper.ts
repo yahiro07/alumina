@@ -37,6 +37,7 @@ function createFunctionComponentWrapper(
         }
         if (
           props.class &&
+          vnode &&
           (vnode.vtype === 'vElement' || vnode.vtype === 'vComponent')
         ) {
           const fcClasses = stringifyClasses(props.class);
