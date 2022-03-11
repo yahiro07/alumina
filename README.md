@@ -11,7 +11,9 @@ Alumina is a react-like small UI framework. It aims to rapid and easy developmen
 ```
 
 ### Configurations
-There are configuration example projects for typescript and well-used bundlers under `./example-packages` in this repository. Please check them for the reference.
+There are configuration example projects for typescript and well-used bundlers in alumina-setup-examples repo. Please check them for the reference.
+https://github.com/yahiro07/alumina-setup-examples
+
 
 ## Basic Examples
 
@@ -161,30 +163,6 @@ There is if prop. When falsy value passed, the element is not rendered. It also 
 ```
 
 Function component accepts class prop and it is added to the class attribute of the root element of returned dom tree. Useful for decorating child components in parent context.
-
-## Repository structure
-
-<pre>
-.
-├── base-packages
-│   └── alumina
-├── example-packages
-│   ├── app_ts_parcel2
-│   ├── app_ts_webpack
-│   └── ...
-├── package.json
-├── readme.md
-├── tsconfig.json
-└── yarn.lock
-
-</pre>
-
-This repository contains the core implementation of alumina and minimum example projects for various front-end development environments.
-
-| package | detail |
-| ---- | ---- |
-| ./base-packages/alumina | package published to npm |
-| ./example-packages/* | example project setup projects |
 
 ## Background
 Alumina is originally developed for the insourcing UI framework for [Kermite](https://kermite.org).

@@ -10,6 +10,7 @@ import {
   styled,
 } from './cssInJs';
 import {
+  IHookRefObject,
   useCallback,
   useEffect,
   useInlineEffect,
@@ -18,6 +19,7 @@ import {
   useRef,
   useState,
 } from './hookImpl';
+import { domStyled, effectOnMount, useMemoWithArgs } from './extensions';
 
 export {
   jsx,
@@ -34,6 +36,10 @@ export {
   createContext,
   useContext,
   Fragment,
+  IHookRefObject,
+  domStyled,
+  useMemoWithArgs,
+  effectOnMount,
 };
 
 export type FC<T extends {} = {}> = (props: T) => JSX.Element | null;
@@ -51,9 +57,8 @@ export function asyncRerender() {
   aluminaGlobal.asyncRerenderFlag = true;
 }
 
-let asyncLoopInitialized = false;
 function setupAsyncRenderLoop() {
-  if (!asyncLoopInitialized) {
+  if (!aluminaGlobal.asyncLoopInitialized) {
     const asyncRenderLoop = () => {
       if (aluminaGlobal.asyncRerenderFlag) {
         aluminaGlobal.rerender();
@@ -62,16 +67,16 @@ function setupAsyncRenderLoop() {
       requestAnimationFrame(asyncRenderLoop);
     };
     asyncRenderLoop();
-    asyncLoopInitialized = true;
+    aluminaGlobal.asyncLoopInitialized = true;
   }
 }
 
 export function render(
-  renderFn: () => JSX.Element,
+  renderFn: (() => JSX.Element) | FC<any>,
   parentDomNode: HTMLElement | null,
 ) {
   const executeRender = () => {
-    vdomCoreRender(renderFn() as IVNode, parentDomNode);
+    vdomCoreRender(renderFn({}) as IVNode, parentDomNode);
     aluminaGlobal.hookEffectFuncs.forEach((func) => func());
     aluminaGlobal.hookEffectFuncs = [];
   };

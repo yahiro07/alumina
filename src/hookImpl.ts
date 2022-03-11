@@ -44,8 +44,6 @@ export function createHookInstance(): IHookInstance {
   };
 }
 
-let gHookInstance: IHookInstance | undefined = undefined;
-
 function hasDepsChanged(
   oldDeps: any[] | undefined,
   newDeps: any[] | undefined,
@@ -62,6 +60,7 @@ function hasDepsChanged(
 }
 
 function getHookHolder<T>(): { holder: T; first: boolean } {
+  const gHookInstance = aluminaGlobal.gHookInstance as IHookInstance;
   if (!gHookInstance) {
     throw new Error('hook functions called outside render context');
   }
@@ -127,6 +126,7 @@ export function useEffect(effectFunc: IEffectFunc, deps: any[] | undefined) {
   if (changed) {
     holder.effectFunc = effectFunc;
     holder.deps = deps;
+    const gHookInstance = aluminaGlobal.gHookInstance as IHookInstance;
     gHookInstance!.pendingEffectHolders.push(holder);
   }
 }
@@ -156,11 +156,11 @@ export function useRef<T>() {
 
 export function startHooks(target: IHookInstance) {
   target.index = 0;
-  gHookInstance = target;
+  aluminaGlobal.gHookInstance = target;
 }
 
 export function endHooks() {
-  gHookInstance = undefined;
+  aluminaGlobal.gHookInstance = undefined;
 }
 
 export function flushHookEffects(target: IHookInstance, all: boolean = false) {

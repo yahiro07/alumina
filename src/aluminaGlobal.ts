@@ -7,16 +7,41 @@ interface IAluminaGlobal {
     nUpdated: number;
     nPatchCall: number;
   };
+  prevRootVdom: any;
+  jsxCreateElementFunction: Function | undefined;
+  asyncLoopInitialized: boolean;
+  gHookInstance: any;
+  gSheet: HTMLStyleElement | undefined;
+  cssTextToClassNameMap: { [sourceCssText: string]: string };
+  cssClassNameToTextMap: { [className: string]: string };
+  seqClassNameIndex: number;
+  classNameIndexTable: { [key: string]: number };
 }
 
-export const aluminaGlobal: IAluminaGlobal = {
-  rerender: () => {},
-  asyncRerenderFlag: false,
-  hookEffectFuncs: [],
+function makeAluminaGlobal(): IAluminaGlobal {
+  const __window = window as any as { __aluminaGlobal: IAluminaGlobal };
+  if (!__window.__aluminaGlobal) {
+    __window.__aluminaGlobal = {
+      rerender: () => {},
+      asyncRerenderFlag: false,
+      hookEffectFuncs: [],
+      debug: {
+        nAll: 0,
+        nUpdated: 0,
+        nPatchCall: 0,
+      },
+      prevRootVdom: undefined,
+      jsxCreateElementFunction: undefined,
+      asyncLoopInitialized: false,
+      gHookInstance: undefined,
+      gSheet: undefined,
+      cssTextToClassNameMap: {},
+      seqClassNameIndex: 0,
+      classNameIndexTable: {},
+      cssClassNameToTextMap: {},
+    };
+  }
+  return __window.__aluminaGlobal;
+}
 
-  debug: {
-    nAll: 0,
-    nUpdated: 0,
-    nPatchCall: 0,
-  },
-};
+export const aluminaGlobal: IAluminaGlobal = makeAluminaGlobal();

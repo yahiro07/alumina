@@ -23,6 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+import { aluminaGlobal } from './aluminaGlobal';
+
 const newRule = /(?:([A-Z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/gi;
 const ruleClean = /\/\*[\s\S]*?\*\/|\s{2,}|\n/gm;
 
@@ -115,24 +117,11 @@ const parse = (obj: any, selector: string) => {
 
 // ----------------------------------------------------------------------
 
-function findKeyByValue(
-  dict: { [key: string]: string },
-  value: string,
-): string | undefined {
-  for (const key in dict) {
-    if (dict[key] === value) {
-      return key;
-    }
-  }
-}
-
-let seqClassNameIndex = 0;
-const classNameIndexTable: { [key: string]: number } = {};
-
 const getUniqueClassName = (cssText: string, label?: string) => {
+  const { classNameIndexTable } = aluminaGlobal;
   let index = classNameIndexTable[cssText];
   if (index === undefined) {
-    index = classNameIndexTable[cssText] = seqClassNameIndex++;
+    index = classNameIndexTable[cssText] = aluminaGlobal.seqClassNameIndex++;
   }
   const prefix = 'cs';
   return label ? `${prefix}${index}_${label}` : `${prefix}${index}`;
@@ -142,14 +131,14 @@ interface ILocalSheet {
   data: string;
 }
 
-let gSheet: HTMLStyleElement | undefined;
-
 function getLocalSheet(): ILocalSheet {
+  let { gSheet } = aluminaGlobal;
   if (!gSheet) {
     gSheet = document.createElement('style');
     gSheet.innerHTML = ' ';
     gSheet.id = 'alumina_css_in_js';
     document.head.appendChild(gSheet);
+    aluminaGlobal.gSheet = gSheet;
   }
   return gSheet.firstChild as any;
 }
@@ -173,20 +162,24 @@ function extractCssTemplate(
 ): string {
   let text = '';
   let i = 0;
+  const { cssClassNameToTextMap } = aluminaGlobal;
   for (i = 0; i < values.length; i++) {
     text += template[i];
-    text += values[i].toString();
+    let value = values[i].toString();
+    if (cssClassNameToTextMap[value]) {
+      value = cssClassNameToTextMap[value];
+    }
+    text += value;
   }
   text += template[i];
   return text;
 }
 
-const cssTextToClassNameMap: { [sourceCssText: string]: string } = {};
-
 export function css(
   template: TemplateStringsArray,
   ...templateParameters: (string | number)[]
 ): string {
+  const { cssTextToClassNameMap, cssClassNameToTextMap } = aluminaGlobal;
   const cssText = extractCssTemplate(template, templateParameters);
   if (cssTextToClassNameMap[cssText]) {
     return cssTextToClassNameMap[cssText];
@@ -198,11 +191,13 @@ export function css(
   updateLocalSheet(parsed);
 
   cssTextToClassNameMap[cssText] = className;
+  cssClassNameToTextMap[className] = cssText;
   return className;
 }
 
 export function applyGlobalStyle(className: string) {
-  const cssText = findKeyByValue(cssTextToClassNameMap, className);
+  const { cssClassNameToTextMap } = aluminaGlobal;
+  const cssText = cssClassNameToTextMap[className];
   if (cssText) {
     const ast = astish(cssText);
     const parsed = parse(ast, '');
@@ -210,9 +205,8 @@ export function applyGlobalStyle(className: string) {
   }
 }
 
-let jsxCreateElementFunction: Function;
 export function setJsxCreateElementFunction(pragma: Function): void {
-  jsxCreateElementFunction = pragma;
+  aluminaGlobal.jsxCreateElementFunction = pragma;
 }
 
 type IntrinsicElements = JSX.IntrinsicElements;
@@ -233,7 +227,8 @@ export const styled: {
         const classNameBase = css(...args);
         return (props: IntrinsicElements[K]) => {
           const className = [classNameBase, props.className || ''].join(' ');
-          return jsxCreateElementFunction(tag, { ...props, className });
+          const { jsxCreateElementFunction } = aluminaGlobal;
+          return jsxCreateElementFunction!(tag, { ...props, className });
         };
       };
     },
