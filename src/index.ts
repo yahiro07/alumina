@@ -19,6 +19,7 @@ import {
   useRef,
   useState,
 } from './hookImpl';
+import { domStyled, effectOnMount, useMemoWithArgs } from './extensions';
 
 export {
   jsx,
@@ -36,6 +37,9 @@ export {
   useContext,
   Fragment,
   IHookRefObject,
+  domStyled,
+  useMemoWithArgs,
+  effectOnMount,
 };
 
 export type FC<T extends {} = {}> = (props: T) => JSX.Element | null;
