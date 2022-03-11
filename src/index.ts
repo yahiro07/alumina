@@ -10,6 +10,7 @@ import {
   styled,
 } from './cssInJs';
 import {
+  IHookRefObject,
   useCallback,
   useEffect,
   useInlineEffect,
@@ -34,6 +35,7 @@ export {
   createContext,
   useContext,
   Fragment,
+  IHookRefObject,
 };
 
 export type FC<T extends {} = {}> = (props: T) => JSX.Element | null;
