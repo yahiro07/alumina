@@ -1,11 +1,7 @@
-.local/
-node_modules/
-dist/
+/.local/
+/node_modules/
+/dist/
 yarn-error.log
 .node-version
-.parcel-cache/
-.vscode/
-
-example-packages-dev/
-base-packages/alumina/README.md
+/.vscode/
 /.history/
