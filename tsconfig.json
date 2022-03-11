@@ -3,9 +3,16 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
-    "strict": true,
     "lib": ["dom", "esnext"],
+    "strict": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "jsx": "react",
+    "jsxFactory": "jsx"
+  },
+  "include": ["src"]
 }

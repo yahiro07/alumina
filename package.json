@@ -1,43 +1,35 @@
 {
-  "name": "alumina-monorepo-root",
-  "version": "0.0.0",
+  "name": "alumina",
+  "version": "0.1.11",
+  "description": "small virtual dom framework",
+  "repository": "https://github.com/yahiro07/alumina.git",
+  "author": "yahiro",
   "license": "MIT",
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "base-packages/*",
-      "example-packages/*",
-      "example-packages-dev/*"
-    ]
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist",
+    "src",
+    "jsx-runtime.d.ts"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js"
+    },
+    "./jsx-runtime": {
+      "require": "./dist/cjs/core/jsxRuntime.js",
+      "import": "./dist/esm/core/jsxRuntime.js"
+    }
   },
   "scripts": {
-    "build": "yarn workspace alumina build",
-    "watch": "yarn workspace alumina watch",
-    "test": "yarn workspace alumina test",
-    "start": "yarn workspace app_ts_webpack start",
-    "lint": "eslint . --ext ts,tsx",
-    "format": "prettier --write .",
-    "release:copy_readme": "cp README.md base-packages/alumina/README.md",
-    "release:upver": "yarn workspace alumina version --patch",
-    "release:publish": "yarn workspace alumina publish",
-    "release:all": "yarn release:copy_readme && yarn release:upver && yarn release:publish"
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build": "yarn build:cjs && yarn build:esm",
+    "watch": "tsc -w -p tsconfig.esm.json",
+    "prepublishOnly": "yarn build",
+    "cleanup": "rm -rf dist",
+    "test": "jest"
   },
-  "devDependencies": {
-    "@types/jest": "^27.0.2",
-    "@types/node": "^16.11.7",
-    "@typescript-eslint/eslint-plugin": "^5.3.1",
-    "@typescript-eslint/parser": "^5.3.1",
-    "eslint": "^8.2.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.27.0",
-    "jest": "^27.3.1",
-    "prettier": "^2.4.1",
-    "ts-jest": "^27.0.7",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.4.4"
-  },
-  "dependencies": {}
+  "devDependencies": {}
 }
