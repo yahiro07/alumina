@@ -23,6 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+import { aluminaGlobal } from './aluminaGlobal';
+
 const newRule = /(?:([A-Z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/gi;
 const ruleClean = /\/\*[\s\S]*?\*\/|\s{2,}|\n/gm;
 
@@ -126,13 +128,11 @@ function findKeyByValue(
   }
 }
 
-let seqClassNameIndex = 0;
-const classNameIndexTable: { [key: string]: number } = {};
-
 const getUniqueClassName = (cssText: string, label?: string) => {
+  const { classNameIndexTable } = aluminaGlobal;
   let index = classNameIndexTable[cssText];
   if (index === undefined) {
-    index = classNameIndexTable[cssText] = seqClassNameIndex++;
+    index = classNameIndexTable[cssText] = aluminaGlobal.seqClassNameIndex++;
   }
   const prefix = 'cs';
   return label ? `${prefix}${index}_${label}` : `${prefix}${index}`;
@@ -142,14 +142,14 @@ interface ILocalSheet {
   data: string;
 }
 
-let gSheet: HTMLStyleElement | undefined;
-
 function getLocalSheet(): ILocalSheet {
+  let { gSheet } = aluminaGlobal;
   if (!gSheet) {
     gSheet = document.createElement('style');
     gSheet.innerHTML = ' ';
     gSheet.id = 'alumina_css_in_js';
     document.head.appendChild(gSheet);
+    aluminaGlobal.gSheet = gSheet;
   }
   return gSheet.firstChild as any;
 }
@@ -181,12 +181,11 @@ function extractCssTemplate(
   return text;
 }
 
-const cssTextToClassNameMap: { [sourceCssText: string]: string } = {};
-
 export function css(
   template: TemplateStringsArray,
   ...templateParameters: (string | number)[]
 ): string {
+  const { cssTextToClassNameMap } = aluminaGlobal;
   const cssText = extractCssTemplate(template, templateParameters);
   if (cssTextToClassNameMap[cssText]) {
     return cssTextToClassNameMap[cssText];
@@ -202,6 +201,7 @@ export function css(
 }
 
 export function applyGlobalStyle(className: string) {
+  const { cssTextToClassNameMap } = aluminaGlobal;
   const cssText = findKeyByValue(cssTextToClassNameMap, className);
   if (cssText) {
     const ast = astish(cssText);
@@ -210,9 +210,8 @@ export function applyGlobalStyle(className: string) {
   }
 }
 
-let jsxCreateElementFunction: Function;
 export function setJsxCreateElementFunction(pragma: Function): void {
-  jsxCreateElementFunction = pragma;
+  aluminaGlobal.jsxCreateElementFunction = pragma;
 }
 
 type IntrinsicElements = JSX.IntrinsicElements;
@@ -233,7 +232,8 @@ export const styled: {
         const classNameBase = css(...args);
         return (props: IntrinsicElements[K]) => {
           const className = [classNameBase, props.className || ''].join(' ');
-          return jsxCreateElementFunction(tag, { ...props, className });
+          const { jsxCreateElementFunction } = aluminaGlobal;
+          return jsxCreateElementFunction!(tag, { ...props, className });
         };
       };
     },

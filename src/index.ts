@@ -53,9 +53,8 @@ export function asyncRerender() {
   aluminaGlobal.asyncRerenderFlag = true;
 }
 
-let asyncLoopInitialized = false;
 function setupAsyncRenderLoop() {
-  if (!asyncLoopInitialized) {
+  if (!aluminaGlobal.asyncLoopInitialized) {
     const asyncRenderLoop = () => {
       if (aluminaGlobal.asyncRerenderFlag) {
         aluminaGlobal.rerender();
@@ -64,7 +63,7 @@ function setupAsyncRenderLoop() {
       requestAnimationFrame(asyncRenderLoop);
     };
     asyncRenderLoop();
-    asyncLoopInitialized = true;
+    aluminaGlobal.asyncLoopInitialized = true;
   }
 }
 
