@@ -11,8 +11,8 @@ Alumina is a react-like small UI framework. It aims to rapid and easy developmen
 ```
 
 ### Configurations
-There are configuration example projects for typescript and well-used bundlers in alumina-setup-examples repo. Please check them for the reference.
-https://github.com/yahiro07/alumina-setup-examples
+There are configuration example projects for typescript and well-used bundlers in [alumina-setup-examples](https://github.com/yahiro07/alumina-setup-examples
+) repo. Please check them for the reference.
 
 
 ## Basic Examples
@@ -68,27 +68,34 @@ render(() => <Counter />, document.getElementById('app'));
 ```tsx
 import { render, jsx } from 'alumina';
 
-const state = {
-  count: 0,
-};
-const getters = {
-  get countDouble() {
-    return state.count * 2;
-  },
-};
-const actions = {
-  increment() {
-    state.count++;
-  },
-  reset() {
-    state.count = 0;
-  },
-};
+function createStore() {
+  const state = {
+    count: 0,
+  };
+  const getters = {
+    get countDouble() {
+      return state.count * 2;
+    },
+  };
+  const actions = {
+    increment() {
+      state.count++;
+    },
+    reset() {
+      state.count = 0;
+    },
+  };
+  return { state, getters, actions };
+}
+
+const store = createStore();
 
 const Counter = () => {
-  const { count } = state;
-  const { countDouble } = getters;
-  const { increment, reset } = actions;
+  const {
+    state: { count },
+    getters: { countDouble },
+    actions: { increment, reset },
+  } = store;
   return (
     <div>
       <div>count: {count}</div>
