@@ -13,6 +13,7 @@ interface IAluminaGlobal {
   gHookInstance: any;
   gSheet: HTMLStyleElement | undefined;
   cssTextToClassNameMap: { [sourceCssText: string]: string };
+  cssClassNameToTextMap: { [className: string]: string };
   seqClassNameIndex: number;
   classNameIndexTable: { [key: string]: number };
 }
@@ -37,6 +38,7 @@ function makeAluminaGlobal(): IAluminaGlobal {
       cssTextToClassNameMap: {},
       seqClassNameIndex: 0,
       classNameIndexTable: {},
+      cssClassNameToTextMap: {},
     };
   }
   return __window.__aluminaGlobal;

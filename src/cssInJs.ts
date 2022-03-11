@@ -117,17 +117,6 @@ const parse = (obj: any, selector: string) => {
 
 // ----------------------------------------------------------------------
 
-function findKeyByValue(
-  dict: { [key: string]: string },
-  value: string,
-): string | undefined {
-  for (const key in dict) {
-    if (dict[key] === value) {
-      return key;
-    }
-  }
-}
-
 const getUniqueClassName = (cssText: string, label?: string) => {
   const { classNameIndexTable } = aluminaGlobal;
   let index = classNameIndexTable[cssText];
@@ -173,9 +162,14 @@ function extractCssTemplate(
 ): string {
   let text = '';
   let i = 0;
+  const { cssClassNameToTextMap } = aluminaGlobal;
   for (i = 0; i < values.length; i++) {
     text += template[i];
-    text += values[i].toString();
+    let value = values[i].toString();
+    if (cssClassNameToTextMap[value]) {
+      value = cssClassNameToTextMap[value];
+    }
+    text += value;
   }
   text += template[i];
   return text;
@@ -185,7 +179,7 @@ export function css(
   template: TemplateStringsArray,
   ...templateParameters: (string | number)[]
 ): string {
-  const { cssTextToClassNameMap } = aluminaGlobal;
+  const { cssTextToClassNameMap, cssClassNameToTextMap } = aluminaGlobal;
   const cssText = extractCssTemplate(template, templateParameters);
   if (cssTextToClassNameMap[cssText]) {
     return cssTextToClassNameMap[cssText];
@@ -197,12 +191,13 @@ export function css(
   updateLocalSheet(parsed);
 
   cssTextToClassNameMap[cssText] = className;
+  cssClassNameToTextMap[className] = cssText;
   return className;
 }
 
 export function applyGlobalStyle(className: string) {
-  const { cssTextToClassNameMap } = aluminaGlobal;
-  const cssText = findKeyByValue(cssTextToClassNameMap, className);
+  const { cssClassNameToTextMap } = aluminaGlobal;
+  const cssText = cssClassNameToTextMap[className];
   if (cssText) {
     const ast = astish(cssText);
     const parsed = parse(ast, '');
