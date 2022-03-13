@@ -72,11 +72,11 @@ function setupAsyncRenderLoop() {
 }
 
 export function render(
-  renderFn: (() => JSX.Element) | FC<any>,
+  renderFn: () => JSX.Element,
   parentDomNode: HTMLElement | null,
 ) {
   const executeRender = () => {
-    vdomCoreRender(renderFn({}) as IVNode, parentDomNode);
+    vdomCoreRender(renderFn() as IVNode, parentDomNode);
     aluminaGlobal.hookEffectFuncs.forEach((func) => func());
     aluminaGlobal.hookEffectFuncs = [];
   };
